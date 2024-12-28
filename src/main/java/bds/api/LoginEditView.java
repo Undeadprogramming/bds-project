@@ -3,7 +3,7 @@ package bds.api;
 public class LoginEditView {
 
     private Long idWorker;        // Represents the worker ID
-    private String userName;      // Represents the user name (login)
+    private String userName;      // Represents the username (login)
     private String password;      // Represents the password for the login
 
     public Long getIdWorker() {

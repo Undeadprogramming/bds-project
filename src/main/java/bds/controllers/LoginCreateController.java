@@ -10,6 +10,7 @@ import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.ButtonType;
 import javafx.scene.control.TextField;
+import javafx.scene.control.PasswordField;
 import javafx.util.Duration;
 import bds.data.LoginRepository;
 import bds.services.LoginService;
@@ -64,6 +65,7 @@ public class LoginCreateController {
         loginCreateView.setPassword(password.toCharArray()); // Assuming LoginCreateView expects a char array for the password
         loginCreateView.setIdWorker(Integer.parseInt(workerId));
 
+        System.out.println("created: " + loginCreateView.toString());
         // Call the login service to handle the login creation logic
         loginService.createLogin(loginCreateView);
 

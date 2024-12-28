@@ -3,6 +3,7 @@
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.TextField?>
+<?import javafx.scene.control.PasswordField?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.ColumnConstraints?>
 <?import javafx.scene.layout.GridPane?>
@@ -27,57 +28,24 @@
                 <RowConstraints />
             </rowConstraints>
             <children>
-                <Label text="id">
+                <Label text="id worker">
                     <padding>
                         <Insets left="5.0" />
                     </padding>
                 </Label>
-                <Label text="email" GridPane.rowIndex="1">
+                <Label text="username" GridPane.rowIndex="1">
                     <padding>
                         <Insets left="5.0" />
                     </padding>
                 </Label>
-                <Label text="first name" GridPane.rowIndex="2">
+                <Label text="password" GridPane.rowIndex="2">
                     <padding>
                         <Insets left="5.0" />
                     </padding>
                 </Label>
-                <Label text="last name" GridPane.rowIndex="3">
-                    <padding>
-                        <Insets left="5.0" />
-                    </padding>
-                </Label>
-                <Label text="nickname" GridPane.rowIndex="4">
-                    <padding>
-                        <Insets left="5.0" />
-                    </padding>
-                </Label>
-                <TextField fx:id="idTextField" GridPane.columnIndex="1" />
-                <TextField fx:id="emailTextField" GridPane.columnIndex="1" GridPane.rowIndex="1" />
-                <TextField fx:id="givenNameTextField" GridPane.columnIndex="1" GridPane.rowIndex="2" />
-                <TextField fx:id="familyNameTextField" GridPane.columnIndex="1" GridPane.rowIndex="3" />
-                <TextField fx:id="nicknameTextField" GridPane.columnIndex="1" GridPane.rowIndex="4" />
-            <Label text="city" GridPane.rowIndex="5">
-               <GridPane.margin>
-                  <Insets />
-               </GridPane.margin>
-               <padding>
-                  <Insets left="5.0" />
-               </padding>
-            </Label>
-            <Label text="house number" GridPane.rowIndex="6">
-               <padding>
-                  <Insets left="5.0" />
-               </padding>
-            </Label>
-            <Label text="street" GridPane.rowIndex="7">
-               <padding>
-                  <Insets left="5.0" />
-               </padding>
-            </Label>
-            <TextField fx:id="cityTextField" GridPane.columnIndex="1" GridPane.rowIndex="5" />
-            <TextField fx:id="houseNumberTextField" GridPane.columnIndex="1" GridPane.rowIndex="6" />
-            <TextField fx:id="streetTextField" GridPane.columnIndex="1" GridPane.rowIndex="7" />
+                <TextField fx:id="idWorkerTextField" GridPane.columnIndex="1" />
+                <TextField fx:id="userNameTextField" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+                <PasswordField fx:id="passwordTextField" GridPane.columnIndex="1" GridPane.rowIndex="2" />
             </children>
         </GridPane>
     </children>

@@ -71,8 +71,8 @@ public class LoginEditController {
      */
     private void loadLoginData() {
         Stage stage = this.stage;
-        if (stage.getUserData() instanceof LoginEditView) {
-            LoginEditView loginEditView = (LoginEditView) stage.getUserData();
+        if (stage.getUserData() instanceof LoginBasicView) {
+            LoginBasicView loginEditView = (LoginBasicView) stage.getUserData();
             idWorkerTextField.setText(String.valueOf(loginEditView.getIdWorker()));
             userNameTextField.setText(loginEditView.getUserName());
             passwordTextField.setText(loginEditView.getPassword());

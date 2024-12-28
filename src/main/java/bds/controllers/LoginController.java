@@ -93,7 +93,7 @@ public class LoginController {
     }
 
     private void initializeLogos() {
-        Image vutImage = new Image(App.class.getResourceAsStream("logos/vut-logo-eng.png"));
+        Image vutImage = new Image(App.class.getResourceAsStream("logos/logo.png"));
         ImageView vutLogoImage = new ImageView(vutImage);
         vutLogoImage.setFitHeight(85);
         vutLogoImage.setFitWidth(150);
@@ -132,13 +132,13 @@ public class LoginController {
             fxmlLoader.setLocation(App.class.getResource("fxml/Persons.fxml"));
             Scene scene = new Scene(fxmlLoader.load(), 1050, 600);
             Stage stage = new Stage();
-            stage.setTitle("BDS JavaFX Demo App");
+            stage.setTitle("Database login table");
             stage.setScene(scene);
 
             Stage stageOld = (Stage) signInButton.getScene().getWindow();
             stageOld.close();
 
-            stage.getIcons().add(new Image(App.class.getResourceAsStream("logos/vut.jpg")));
+            stage.getIcons().add(new Image(App.class.getResourceAsStream("logos/logo.png")));
             authConfirmDialog();
 
             stage.show();
@@ -187,31 +187,4 @@ public class LoginController {
         handleSignIn();
     }
 
-//    public void handleAddPersonButton(ActionEvent actionEvent) {
-//        try {
-//            FXMLLoader fxmlLoader = new FXMLLoader();
-//            fxmlLoader.setLocation(App.class.getResource("fxml/PersonsCreate.fxml"));
-//            Scene scene = new Scene(fxmlLoader.load(), 600, 500);
-//            Stage stage = new Stage();
-//            stage.setTitle("BDS JavaFX Create Person");
-//            stage.setScene(scene);
-//
-////            Stage stageOld = (Stage) signInButton.getScene().getWindow();
-////            stageOld.close();
-////
-////            stage.getIcons().add(new Image(App.class.getResourceAsStream("logos/vut.jpg")));
-////            authConfirmDialog();
-//
-//            stage.show();
-//        } catch (IOException ex) {
-//            ExceptionHandler.handleException(ex);
-//        }
-//    }
-//
-//    public void handleRefreshButton(ActionEvent actionEvent) {
-//        ObservableList<LoginBasicView> observablePersonsList = initializePersonsData();
-//        systemPersonsTableView.setItems(observablePersonsList);
-//        systemPersonsTableView.refresh();
-//        systemPersonsTableView.sort();
-//    }
 }

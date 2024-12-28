@@ -22,8 +22,8 @@
 		</HBox>
       <Pane prefHeight="363.0" prefWidth="600.0">
          <children>
-             <Label fx:id="vutLogo" layoutX="200.0" layoutY="95.0" prefHeight="17.0" prefWidth="62.0" />
-             <Label layoutX="75.0" layoutY="40.0" text="Firm n1 database">
+             <Label fx:id="vutLogo" layoutX="220.0" layoutY="25.0" prefHeight="150.0" prefWidth="300.0" />
+             <Label layoutX="150.0" layoutY="25.0" text="Cheap Clothes Database">
                <font>
                   <Font size="26.0" />
                </font>

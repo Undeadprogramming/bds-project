@@ -12,41 +12,41 @@ public class LoginRepository {
     public void editLogin(LoginEditView loginEditView) {
         String updateLoginSQL = "UPDATE bds.login SET user_name = ?, password = ? WHERE id_worker = ?";
         String checkIfExists = "SELECT user_name FROM bds.login WHERE id_worker = ?";
-        try (Connection connection = DataSourceConfig.getConnection();
-             PreparedStatement preparedStatement = connection.prepareStatement(updateLoginSQL, Statement.RETURN_GENERATED_KEYS)) {
-            // Set prepared statement variables
-            preparedStatement.setString(1, loginEditView.getUserName());
-            preparedStatement.setString(2, loginEditView.getPassword());  // In practice, consider hashing the password before saving.
-            preparedStatement.setLong(3, loginEditView.getIdWorker());
 
-            try {
-                // Check if the login for the worker exists
-                try (PreparedStatement ps = connection.prepareStatement(checkIfExists)) {
-                    ps.setLong(1, loginEditView.getIdWorker());
-                    try (ResultSet resultSet = ps.executeQuery()) {
-                        if (!resultSet.next()) {
-                            throw new DataAccessException("This login for the worker does not exist.");
-                        }
+        try (Connection connection = DataSourceConfig.getConnection()) {
+            connection.setAutoCommit(false); // Disable autoCommit for manual transaction handling
+
+            try (PreparedStatement checkStmt = connection.prepareStatement(checkIfExists)) {
+                checkStmt.setLong(1, loginEditView.getIdWorker());
+                try (ResultSet resultSet = checkStmt.executeQuery()) {
+                    if (!resultSet.next()) {
+                        throw new DataAccessException("This login for the worker does not exist.");
                     }
                 }
+            }
 
-                // Update the login record in the database
-                int affectedRows = preparedStatement.executeUpdate();
+            try (PreparedStatement updateStmt = connection.prepareStatement(updateLoginSQL)) {
+                updateStmt.setString(1, loginEditView.getUserName());
+                updateStmt.setString(2, loginEditView.getPassword());
+                updateStmt.setLong(3, loginEditView.getIdWorker());
+
+                int affectedRows = updateStmt.executeUpdate();
                 if (affectedRows == 0) {
                     throw new DataAccessException("Updating login failed, no rows affected.");
                 }
 
-                // Commit the transaction if everything goes well
-                connection.commit();  // commit the changes if no exceptions occurred
+                connection.commit(); // Commit the transaction if no exceptions occurred
             } catch (SQLException e) {
-                // Rollback the transaction in case of any error
-                connection.rollback();
+                connection.rollback(); // Rollback in case of errors
                 throw new DataAccessException("Error updating login. Changes rolled back.", e);
+            } finally {
+                connection.setAutoCommit(true); // Restore autoCommit to default
             }
         } catch (SQLException e) {
             throw new DataAccessException("Error updating login: Operation failed.", e);
         }
     }
+
 
     public List<LoginBasicView> getLoginsBasicView() {
         try (Connection connection = DataSourceConfig.getConnection();
@@ -111,8 +111,9 @@ public class LoginRepository {
              PreparedStatement preparedStatement = connection.prepareStatement(insertLoginSQL, Statement.RETURN_GENERATED_KEYS)) {
 
             // Nastavení parametrů do dotazu
+            String text = String.valueOf( loginCreateView.getPassword());
             preparedStatement.setString(1, loginCreateView.getUserName());
-            //preparedStatement.setString(2, loginCreateView.getPassword());
+            preparedStatement.setString(2, text);
             preparedStatement.setInt(3, loginCreateView.getIdWorker());
 
             int affectedRows = preparedStatement.executeUpdate();

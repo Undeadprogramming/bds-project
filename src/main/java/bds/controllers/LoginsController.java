@@ -67,7 +67,7 @@ public class LoginsController {
         initializeTableViewSelection();
         loadIcons();
 
-        logger.info("PersonsController initialized");
+        logger.info("LoginsController initialized");
     }
 
     private void initializeTableViewSelection() {
@@ -82,7 +82,7 @@ public class LoginsController {
                 stage.setUserData(loginView);
                 stage.setTitle("BDS JavaFX Edit Person");
 
-                PersonsEditController controller = new PersonsEditController();
+                LoginEditController controller = new LoginEditController();
                 controller.setStage(stage);
                 fxmlLoader.setController(controller);
 
@@ -107,9 +107,9 @@ public class LoginsController {
                 LoginDetailView LoginDetailView = LoginService.getLoginDetailView(workerId);
 
                 stage.setUserData(LoginDetailView);
-                stage.setTitle("BDS JavaFX Persons Detailed View");
+                stage.setTitle("BDS JavaFX Login Detailed View");
 
-                PersonsDetailViewController controller = new PersonsDetailViewController();
+                LoginDetailViewController controller = new LoginDetailViewController();
                 controller.setStage(stage);
                 fxmlLoader.setController(controller);
 

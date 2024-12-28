@@ -17,7 +17,7 @@ import java.io.IOException;
 
 public class LoginDetailViewController {
 
-    private static final Logger logger = LoggerFactory.getLogger(LoginController.class);
+    private static final Logger logger = LoggerFactory.getLogger(LoginDetailViewController.class);
 
     @FXML
     private TextField userNameTextField;
