@@ -89,10 +89,10 @@ public class LoginRepository {
     public LoginDetailView findLoginDetailView(Long workerId) {
         try (Connection connection = DataSourceConfig.getConnection();
              PreparedStatement preparedStatement = connection.prepareStatement(
-                     "SELECT user_name, password, id_worker, first_name,last_name " +
-                             "FROM bds.login as l" +
-                             "JOIN bds.worker as w ON w.id_worker= l.id_worker"+
-                             "WHERE id_worker = ?")) {
+                     "SELECT l.user_name, l.password, l.id_worker, w.first_name, w.last_name " +
+                             "FROM bds.login AS l " +
+                             "JOIN bds.worker AS w ON w.id_worker = l.id_worker " +
+                             "WHERE l.id_worker = ?")) {
             preparedStatement.setLong(1, workerId);
             try (ResultSet resultSet = preparedStatement.executeQuery()) {
                 if (resultSet.next()) {
