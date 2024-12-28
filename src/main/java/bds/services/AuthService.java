@@ -38,10 +38,10 @@ public class AuthService {
         if (loginAuthView== null) {
             throw new ResourceNotFoundException("Provided username is not found.");
         }
-        String str = new String(ARGON2.hash(10, 65536, 1, password).toCharArray());
+        System.out.println(loginAuthView.getPassword());
+        System.out.println(password.toCharArray());
+        String str = new String(ARGON2.hash(10, 65536, 1, loginAuthView.getPassword()));
         loginAuthView.setPassword(str);
-        //System.out.println(loginAuthView.getPassword());
-        //System.out.println(password.toCharArray());
         //return ARGON2.verify(loginAuthView.getPassword(), password.toCharArray());
         logger.info(" password mine:{}",password.toCharArray());
         logger.info(" password data:{}",loginAuthView.getPassword());
