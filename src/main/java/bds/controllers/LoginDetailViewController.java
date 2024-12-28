@@ -27,6 +27,10 @@ public class LoginDetailViewController {
 
     @FXML
     private TextField idWorkerTextField;
+    @FXML
+    private TextField firstnameTextField;
+    @FXML
+    private TextField lastnameTextField;
 
     // used to reference the stage and to get passed data through it
     private Stage stage;
@@ -40,6 +44,8 @@ public class LoginDetailViewController {
         userNameTextField.setEditable(false);
         passwordTextField.setEditable(false);
         idWorkerTextField.setEditable(false);
+        firstnameTextField.setEditable(false);
+        lastnameTextField.setEditable(false);
 
         loadLoginData();
 
@@ -53,6 +59,8 @@ public class LoginDetailViewController {
             userNameTextField.setText(loginDetailView.getUserName());
             passwordTextField.setText(loginDetailView.getPassword());
             idWorkerTextField.setText(String.valueOf(loginDetailView.getIdWorker()));
+            firstnameTextField.setText(loginDetailView.getFirstname());
+            lastnameTextField.setText(loginDetailView.getLastname());
         }
     }
 

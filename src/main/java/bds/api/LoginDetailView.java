@@ -9,7 +9,8 @@ public class LoginDetailView {
     private StringProperty userName = new SimpleStringProperty();
     private StringProperty password = new SimpleStringProperty();
     private LongProperty idWorker = new SimpleLongProperty();
-
+    private StringProperty firstname = new SimpleStringProperty();
+    private StringProperty lastname = new SimpleStringProperty();
     // Getters and setters
     public String getUserName() {
         return userName.get();
@@ -46,5 +47,29 @@ public class LoginDetailView {
 
     public LongProperty idWorkerProperty() {
         return idWorker;
+    }
+
+    public String getLastname() {
+        return lastname.get();
+    }
+
+    public StringProperty lastnameProperty() {
+        return lastname;
+    }
+
+    public void setLastname(String lastname) {
+        this.lastname.set(lastname);
+    }
+
+    public String getFirstname() {
+        return firstname.get();
+    }
+
+    public StringProperty firstnameProperty() {
+        return firstname;
+    }
+
+    public void setFirstname(String firstname) {
+        this.firstname.set(firstname);
     }
 }

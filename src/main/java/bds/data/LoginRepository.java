@@ -89,8 +89,9 @@ public class LoginRepository {
     public LoginDetailView findLoginDetailView(Long workerId) {
         try (Connection connection = DataSourceConfig.getConnection();
              PreparedStatement preparedStatement = connection.prepareStatement(
-                     "SELECT user_name, password, id_worker " +
-                             "FROM bds.login " +
+                     "SELECT user_name, password, id_worker, first_name,last_name " +
+                             "FROM bds.login as l" +
+                             "JOIN bds.worker as w ON w.id_worker= l.id_worker"+
                              "WHERE id_worker = ?")) {
             preparedStatement.setLong(1, workerId);
             try (ResultSet resultSet = preparedStatement.executeQuery()) {
@@ -140,6 +141,8 @@ public class LoginRepository {
         loginDetailView.setUserName(rs.getString("user_name"));
         loginDetailView.setPassword(rs.getString("password"));
         loginDetailView.setIdWorker(rs.getLong("id_worker"));
+        loginDetailView.setFirstname(rs.getString("first_name"));
+        loginDetailView.setLastname(rs.getString("last_name"));
         return loginDetailView;
     }
     private LoginBasicView mapToLoginBasicView(ResultSet rs) throws SQLException {

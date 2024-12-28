@@ -43,9 +43,21 @@
                         <Insets left="5.0" />
                     </padding>
                 </Label>
+                <Label text="first name" GridPane.rowIndex="3">
+                    <padding>
+                        <Insets left="5.0" />
+                    </padding>
+                </Label>
+                <Label text="last name" GridPane.rowIndex="4">
+                    <padding>
+                        <Insets left="5.0" />
+                    </padding>
+                </Label>
                 <TextField fx:id="idWorkerTextField" GridPane.columnIndex="1" />
                 <TextField fx:id="userNameTextField" GridPane.columnIndex="1" GridPane.rowIndex="1" />
                 <PasswordField fx:id="passwordTextField" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+                <TextField fx:id="firstnameTextField" GridPane.columnIndex="1" GridPane.rowIndex="3" />
+                <TextField fx:id="lastnameTextField" GridPane.columnIndex="1" GridPane.rowIndex="4" />
             </children>
         </GridPane>
     </children>
