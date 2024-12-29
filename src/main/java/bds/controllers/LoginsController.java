@@ -2,6 +2,7 @@ package bds.controllers;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.collections.transformation.FilteredList;
 import javafx.scene.Scene;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.stage.Stage;
@@ -30,6 +31,9 @@ public class LoginsController {
     public Button addPersonButton;
     @FXML
     public Button refreshButton;
+    public TextField workerIdFilterField;
+    public TextField usernameFilterField;
+    public TextField passwordFilterField;
     @FXML
     private TableColumn<LoginBasicView, Long> workersId;
     @FXML
@@ -43,6 +47,7 @@ public class LoginsController {
 
     private LoginService LoginService;
     private LoginRepository LoginRepository;
+    private FilteredList<LoginBasicView> filteredData;
 
     public LoginsController() {
     }
@@ -60,19 +65,65 @@ public class LoginsController {
 
 
         ObservableList<LoginBasicView> observablePersonsList = initializePersonsData();
-        systemPersonsTableView.setItems(observablePersonsList);
+        filteredData = new FilteredList<>(observablePersonsList, p -> true);
+        systemPersonsTableView.setItems(filteredData);
 
         systemPersonsTableView.getSortOrder().add(workersId);
 
+        initializeFilters();
         initializeTableViewSelection();
         loadIcons();
 
         logger.info("LoginsController initialized");
     }
+    private void initializeFilters() {
+        workerIdFilterField.textProperty().addListener((observable, oldValue, newValue) ->
+                filteredData.setPredicate(this::applyFilters));
+
+        usernameFilterField.textProperty().addListener((observable, oldValue, newValue) ->
+                filteredData.setPredicate(this::applyFilters));
+
+        passwordFilterField.textProperty().addListener((observable, oldValue, newValue) ->
+                filteredData.setPredicate(this::applyFilters));
+    }
+
+    private boolean applyFilters(LoginBasicView login) {
+        // Filter by worker ID
+        String workerIdText = workerIdFilterField.getText();
+        if (workerIdText != null && !workerIdText.isEmpty()) {
+            try {
+                if (!String.valueOf(login.getIdWorker()).contains(workerIdText)) {
+                    return false;
+                }
+            } catch (NumberFormatException e) {
+                return false; // Invalid input doesn't match any record
+            }
+        }
+
+        // Filter by username
+        String usernameText = usernameFilterField.getText();
+        if (usernameText != null && !usernameText.isEmpty()) {
+            if (!login.getUserName().toLowerCase().contains(usernameText.toLowerCase())) {
+                return false;
+            }
+        }
+
+        // Filter by password
+        String passwordText = passwordFilterField.getText();
+        if (passwordText != null && !passwordText.isEmpty()) {
+            if (!login.getPassword().toLowerCase().contains(passwordText.toLowerCase())) {
+                return false;
+            }
+        }
+
+        return true;
+    }
 
     private void initializeTableViewSelection() {
-        MenuItem edit = new MenuItem("Edit person");
-        MenuItem detailedView = new MenuItem("Detailed person view");
+        MenuItem edit = new MenuItem("Edit login");
+        MenuItem detailedView = new MenuItem("Detailed login view");
+        MenuItem delete = new MenuItem("Delete login");
+
         edit.setOnAction((ActionEvent event) -> {
             LoginBasicView loginView = systemPersonsTableView.getSelectionModel().getSelectedItem();
             try {
@@ -80,7 +131,7 @@ public class LoginsController {
                 fxmlLoader.setLocation(App.class.getResource("fxml/PersonEdit.fxml"));
                 Stage stage = new Stage();
                 stage.setUserData(loginView);
-                stage.setTitle("BDS JavaFX Edit Person");
+                stage.setTitle("BDS JavaFX Edit login");
 
                 LoginEditController controller = new LoginEditController();
                 controller.setStage(stage);
@@ -123,10 +174,41 @@ public class LoginsController {
             }
         });
 
+        delete.setOnAction((ActionEvent event) -> {
+            LoginBasicView selectedLogin = systemPersonsTableView.getSelectionModel().getSelectedItem();
+            if (selectedLogin != null) {
+                // Confirm deletion
+                Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
+                alert.setTitle("Delete Confirmation");
+                alert.setHeaderText("Are you sure you want to delete this login?");
+                alert.setContentText("This action cannot be undone.");
+                alert.showAndWait().ifPresent(response -> {
+                    if (response == ButtonType.OK) {
+                        try {
+                            // Perform deletion in data source (e.g., repository or database)
+                            LoginService.deleteLogin(selectedLogin); // Replace with your actual delete method
 
+                            // Remove the login from the table
+                            ObservableList<LoginBasicView> items = systemPersonsTableView.getItems();
+                            items.remove(selectedLogin); // Remove from the ObservableList
+
+                            filteredData = new FilteredList<>(items, p -> true); // Recreate FilteredList
+                            filteredData.setPredicate(this::applyFilters); // Apply the filter again
+                            systemPersonsTableView.setItems(filteredData); // Update the TableView with the filtered list
+
+                            // Optionally, refresh the table view after removal
+                            systemPersonsTableView.setItems(FXCollections.observableArrayList(items)); // Update the table
+                            logger.info("Login with worker ID {} deleted successfully.", selectedLogin.getIdWorker());
+                        } catch (Exception ex) {
+                            ExceptionHandler.handleException(ex);
+                        }
+                    }
+                });
+            }
+        });
         ContextMenu menu = new ContextMenu();
         menu.getItems().add(edit);
-        menu.getItems().addAll(detailedView);
+        menu.getItems().addAll(detailedView, delete);
         systemPersonsTableView.setContextMenu(menu);
     }
 
@@ -155,12 +237,6 @@ public class LoginsController {
             stage.setTitle("BDS JavaFX Create Person");
             stage.setScene(scene);
 
-//            Stage stageOld = (Stage) signInButton.getScene().getWindow();
-//            stageOld.close();
-//
-//            stage.getIcons().add(new Image(App.class.getResourceAsStream("logos/vut.jpg")));
-//            authConfirmDialog();
-
             stage.show();
         } catch (IOException ex) {
             ExceptionHandler.handleException(ex);
@@ -169,7 +245,8 @@ public class LoginsController {
 
     public void handleRefreshButton(ActionEvent actionEvent) {
         ObservableList<LoginBasicView> observablePersonsList = initializePersonsData();
-        systemPersonsTableView.setItems(observablePersonsList);
+        filteredData = new FilteredList<>(observablePersonsList, p -> true);
+        systemPersonsTableView.setItems(filteredData);
         systemPersonsTableView.refresh();
         systemPersonsTableView.sort();
     }

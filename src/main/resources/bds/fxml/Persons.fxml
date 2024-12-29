@@ -7,88 +7,64 @@
 <?import javafx.scene.control.MenuBar?>
 <?import javafx.scene.control.MenuItem?>
 <?import javafx.scene.control.ScrollPane?>
-<?import javafx.scene.control.SplitPane?>
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
 <?import javafx.scene.layout.AnchorPane?>
-<?import javafx.scene.layout.HBox?>
-<?import javafx.scene.layout.Pane?>
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.paint.Color?>
 <?import javafx.scene.text.Font?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.control.TextField?>
 
-<VBox minHeight="625.0" prefWidth="950.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="bds.controllers.LoginsController">
+<VBox minHeight="700.0" prefWidth="1000.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="bds.controllers.LoginsController">
   <children>
-    <MenuBar VBox.vgrow="NEVER">
-      <menus>
-        <Menu mnemonicParsing="false" text="File">
-          <items>
-            <MenuItem mnemonicParsing="false" text="New" />
-            <MenuItem mnemonicParsing="false" text="Quit" />
-          </items>
-        </Menu>
-        <Menu mnemonicParsing="false" text="Help">
-          <items>
-            <MenuItem mnemonicParsing="false" text="Help, I need somebody help!" />
-          </items>
-        </Menu>
-      </menus>
-    </MenuBar>
-    <SplitPane dividerPositions="0.14715048975957254, 0.7782724844167408" focusTraversable="true" prefHeight="-1.0" prefWidth="-1.0" VBox.vgrow="ALWAYS">
-      <items>
-        <AnchorPane>
+
+    <VBox>
+      <padding>
+        <Insets top="10.0" right="10.0" bottom="10.0" left="10.0"/>
+      </padding>
+      <children>
+        <HBox spacing="10.0">
           <children>
-            <Label alignment="CENTER" layoutX="14.0" layoutY="14.0" minWidth="60.0" prefWidth="-1.0" style="&#10;" text="My friends" textAlignment="CENTER" wrapText="false">
-              <font>
-                <Font size="18.0" fx:id="x1" />
-              </font>
-              <textFill>
-                <Color red="0.624" green="0.624" blue="0.624" fx:id="x2" />
-              </textFill>
-            </Label>
+            <Label text="Filters:" />
+            <TextField fx:id="workerIdFilterField" promptText="Filter by worker_id" />
+            <TextField fx:id="usernameFilterField" promptText="Filter by username" />
+            <TextField fx:id="passwordFilterField" promptText="Filter by password" />
           </children>
-        </AnchorPane>
-        <ScrollPane prefHeight="-1.0" prefWidth="-1.0">
+        </HBox>
+        <!-- TableView -->
+        <ScrollPane>
           <content>
             <AnchorPane id="Content" maxWidth="1.7976931348623157E308" minHeight="-1.0" minWidth="-Infinity" prefHeight="517.0" prefWidth="592.0">
               <children>
-                <Label alignment="CENTER" font="$x1" layoutX="14.0" layoutY="14.0" prefHeight="27.0" prefWidth="147.0" style="&#10;" text="Persons" textAlignment="CENTER" textFill="$x2" wrapText="false" />
-                        <TableView fx:id="systemPersonsTableView" layoutY="67.0" maxWidth="1.7976931348623157E308" minWidth="-Infinity" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">
-                          <columns>
-                              <TableColumn fx:id="workersId" minWidth="75.0" prefWidth="100.00000303983688" text="worker_id" />
-                              <TableColumn fx:id="username" minWidth="75.0" prefWidth="160.00001525878906" text="username" />
-                              <TableColumn fx:id="password" minWidth="75.0" prefWidth="120.0" text="password" />
-                          </columns>
-                        </TableView>
-                        <Button fx:id="addPersonButton" layoutX="24.0" layoutY="491.0" mnemonicParsing="false" onAction="#handleAddPersonButton" text="Add person" />
-                        <Button fx:id="refreshButton" layoutX="127.0" layoutY="491.0" mnemonicParsing="false" onAction="#handleRefreshButton" text="Refresh" />
+                <Label alignment="CENTER" layoutX="14.0" layoutY="14.0" prefHeight="27.0" prefWidth="147.0" text="Login" textAlignment="CENTER" wrapText="false">
+                  <font>
+                    <Font size="18.0" fx:id="x1" />
+                  </font>
+                  <textFill>
+                    <Color red="0.624" green="0.624" blue="0.624" fx:id="x2" />
+                  </textFill>
+                </Label>
+                <TableView fx:id="systemPersonsTableView"
+                           prefWidth="1000.0"
+                           prefHeight="300.0"
+                           AnchorPane.leftAnchor="150.0"
+                           AnchorPane.rightAnchor="0.0"
+                           AnchorPane.topAnchor="50.0"
+                           AnchorPane.bottomAnchor="50.0">
+                  <columns>
+                    <TableColumn fx:id="workersId" minWidth="75.0" prefWidth="100.00000303983688" text="worker_id" />
+                    <TableColumn fx:id="username" minWidth="75.0" prefWidth="160.00001525878906" text="username" />
+                    <TableColumn fx:id="password" minWidth="75.0" prefWidth="120.0" text="password" />
+                  </columns>
+                </TableView>
+                <Button fx:id="addPersonButton" layoutX="24.0" layoutY="491.0" mnemonicParsing="false" onAction="#handleAddPersonButton" text="Add person" />
+                <Button fx:id="refreshButton" layoutX="127.0" layoutY="491.0" mnemonicParsing="false" onAction="#handleRefreshButton" text="Refresh" />
               </children>
             </AnchorPane>
           </content>
         </ScrollPane>
-        <AnchorPane>
-          <children>
-            <Label alignment="CENTER" font="$x1" layoutX="14.0" layoutY="14.0" style="&#10;" text="My meetings" textAlignment="CENTER" textFill="$x2" wrapText="false" />
-          </children>
-        </AnchorPane>
-      </items>
-    </SplitPane>
-    <HBox id="HBox" alignment="CENTER_LEFT" spacing="5.0" VBox.vgrow="NEVER">
-      <children>
-        <Label maxHeight="1.7976931348623157E308" maxWidth="-1.0" text="Left status" HBox.hgrow="ALWAYS">
-          <font>
-            <Font size="11.0" fx:id="x3" />
-          </font>
-          <textFill>
-            <Color red="0.625" green="0.625" blue="0.625" fx:id="x4" />
-          </textFill>
-        </Label>
-        <Pane prefHeight="-1.0" prefWidth="-1.0" HBox.hgrow="ALWAYS" />
-        <Label font="$x3" maxWidth="-1.0" text="Right status" textFill="$x4" HBox.hgrow="NEVER" />
       </children>
-      <padding>
-        <Insets bottom="3.0" left="3.0" right="3.0" top="3.0" />
-      </padding>
-    </HBox>
+    </VBox>
   </children>
 </VBox>

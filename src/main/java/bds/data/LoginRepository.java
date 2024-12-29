@@ -11,19 +11,11 @@ import java.util.List;
 public class LoginRepository {
     public void editLogin(LoginEditView loginEditView) {
         String updateLoginSQL = "UPDATE bds.login SET user_name = ?, password = ? WHERE id_worker = ?";
-        String checkIfExists = "SELECT user_name FROM bds.login WHERE id_worker = ?";
 
         try (Connection connection = DataSourceConfig.getConnection()) {
             connection.setAutoCommit(false); // Disable autoCommit for manual transaction handling
 
-            try (PreparedStatement checkStmt = connection.prepareStatement(checkIfExists)) {
-                checkStmt.setLong(1, loginEditView.getIdWorker());
-                try (ResultSet resultSet = checkStmt.executeQuery()) {
-                    if (!resultSet.next()) {
-                        throw new DataAccessException("This login for the worker does not exist.");
-                    }
-                }
-            }
+
 
             try (PreparedStatement updateStmt = connection.prepareStatement(updateLoginSQL)) {
                 updateStmt.setString(1, loginEditView.getUserName());
@@ -129,6 +121,33 @@ public class LoginRepository {
         }
     }
 
+    public void deleteLogin(Long idWorker) {
+        String deleteLoginSQL = "DELETE FROM bds.login WHERE id_worker = ?";
+        try (Connection connection = DataSourceConfig.getConnection()) {
+            connection.setAutoCommit(false); // Disable auto-commit for manual transaction handling
+
+
+            try (PreparedStatement deleteStmt = connection.prepareStatement(deleteLoginSQL)) {
+                deleteStmt.setLong(1, idWorker);
+
+                int affectedRows = deleteStmt.executeUpdate();
+                if (affectedRows == 0) {
+                    throw new DataAccessException("Deleting login failed, no rows affected.");
+                }
+
+                connection.commit(); // Commit the transaction if no exceptions occurred
+            } catch (SQLException e) {
+                connection.rollback(); // Rollback in case of errors
+                throw new DataAccessException("Error deleting login. Changes rolled back.", e);
+            } finally {
+                connection.setAutoCommit(true); // Restore auto-commit to default
+            }
+        } catch (SQLException e) {
+            throw new DataAccessException("Error deleting login: Operation failed.", e);
+        }
+    }
+
+
     private LoginAuthView mapToLoginAuth(ResultSet rs) throws SQLException {
         LoginAuthView login = new LoginAuthView();
         login.setUserName(rs.getString("user_name"));
@@ -152,7 +171,4 @@ public class LoginRepository {
         loginBasicView.setIdWorker(rs.getLong("id_worker"));
         return loginBasicView;
     }
-
-
-
 }
