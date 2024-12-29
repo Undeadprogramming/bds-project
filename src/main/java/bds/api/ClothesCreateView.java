@@ -3,7 +3,7 @@ package bds.api;
 import java.util.Arrays;
 
 public class ClothesCreateView {
-
+    private long idClothes;
     private String clothesName;
     private String clothesType;
     private String clothesColour;
@@ -64,12 +64,21 @@ public class ClothesCreateView {
     @Override
     public String toString() {
         return "ClothesCreateView{" +
-                "clothesName='" + clothesName + '\'' +
+                "idClothes='" + idClothes + '\'' +
+                ", clothesName='" + clothesName + '\'' +
                 ", clothesType='" + clothesType + '\'' +
                 ", clothesColour='" + clothesColour + '\'' +
                 ", clothesQuantity=" + clothesQuantity +
                 ", clothesSize='" + clothesSize + '\'' +
                 ", clothesPrice=" + clothesPrice +
                 '}';
+    }
+
+    public long getIdClothes() {
+        return idClothes;
+    }
+
+    public void setIdClothes(long idClothes) {
+        this.idClothes = idClothes;
     }
 }

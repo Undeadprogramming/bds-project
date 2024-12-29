@@ -6,11 +6,13 @@ import javafx.animation.Timeline;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
+import javafx.scene.Node;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.ButtonType;
 import javafx.scene.control.TextField;
 import javafx.scene.control.PasswordField;
+import javafx.stage.Stage;
 import javafx.util.Duration;
 import bds.data.LoginRepository;
 import bds.services.LoginService;
@@ -68,7 +70,7 @@ public class LoginCreateController {
         System.out.println("created: " + loginCreateView.toString());
         // Call the login service to handle the login creation logic
         loginService.createLogin(loginCreateView);
-
+        ((Stage) ((Node) event.getSource()).getScene().getWindow()).close();
         // Show the confirmation dialog after login creation
         loginCreatedConfirmationDialog();
     }

@@ -70,13 +70,6 @@ public class LoginsController {
 
         systemPersonsTableView.getSortOrder().add(workersId);
 
-        initializeFilters();
-        initializeTableViewSelection();
-        loadIcons();
-
-        logger.info("LoginsController initialized");
-    }
-    private void initializeFilters() {
         workerIdFilterField.textProperty().addListener((observable, oldValue, newValue) ->
                 filteredData.setPredicate(this::applyFilters));
 
@@ -85,6 +78,11 @@ public class LoginsController {
 
         passwordFilterField.textProperty().addListener((observable, oldValue, newValue) ->
                 filteredData.setPredicate(this::applyFilters));
+
+        initializeTableViewSelection();
+        loadIcons();
+
+        logger.info("LoginsController initialized");
     }
 
     private boolean applyFilters(LoginBasicView login) {
@@ -218,7 +216,7 @@ public class LoginsController {
     }
 
     private void loadIcons() {
-        Image vutLogoImage = new Image(App.class.getResourceAsStream("logos/vut-logo-eng.png"));
+        Image vutLogoImage = new Image(App.class.getResourceAsStream("logos/logo.png"));
         ImageView vutLogo = new ImageView(vutLogoImage);
         vutLogo.setFitWidth(150);
         vutLogo.setFitHeight(50);

@@ -1,12 +1,14 @@
 package bds.api;
 
 public class ClothesAuthView {
+    private long idClothes;
     private String clothesName;
     private String clothesType;
     private String clothesColour;
     private int clothesQuantity;
     private String clothesSize;
     private double clothesPrice;
+
 
     // Getter and Setter methods
 
@@ -61,12 +63,21 @@ public class ClothesAuthView {
     @Override
     public String toString() {
         return "ClothesView{" +
-                "clothesName='" + clothesName + '\'' +
+                "idclothes='" + idClothes + '\'' +
+                ", clothesName='" + clothesName + '\'' +
                 ", clothesType='" + clothesType + '\'' +
                 ", clothesColour='" + clothesColour + '\'' +
                 ", clothesQuantity=" + clothesQuantity +
                 ", clothesSize='" + clothesSize + '\'' +
                 ", clothesPrice=" + clothesPrice +
                 '}';
+    }
+
+    public long getidClothes() {
+        return idClothes;
+    }
+
+    public void setidClothes(long idClothes) {
+        this.idClothes = idClothes;
     }
 }

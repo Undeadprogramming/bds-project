@@ -52,6 +52,22 @@ public class MenuController {
     }
 
     public void clothesButton(ActionEvent actionEvent) {
+        try {
+            FXMLLoader fxmlLoader = new FXMLLoader();
+            fxmlLoader.setLocation(App.class.getResource("fxml/Clothes.fxml"));
+            Scene scene = new Scene(fxmlLoader.load(), 1050, 600);
+            Stage stage = new Stage();
+            stage.setTitle("Database login table");
+            stage.setScene(scene);
+
+
+
+            stage.getIcons().add(new Image(App.class.getResourceAsStream("logos/logo.png")));
+
+            stage.show();
+        } catch (IOException ex) {
+            ExceptionHandler.handleException(ex);
+        }
     }
 
     public void customerButton(ActionEvent actionEvent) {

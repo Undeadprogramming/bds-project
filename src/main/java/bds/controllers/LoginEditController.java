@@ -6,6 +6,7 @@ import javafx.animation.Timeline;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
+import javafx.scene.Node;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.ButtonType;
@@ -92,7 +93,7 @@ public class LoginEditController {
         loginEditView.setPassword(password);
 
         loginService.editLogin(loginEditView);
-
+        ((Stage) ((Node) event.getSource()).getScene().getWindow()).close();
         loginEditedConfirmationDialog();
     }
 
