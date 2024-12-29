@@ -186,16 +186,8 @@ public class LoginsController {
                             // Perform deletion in data source (e.g., repository or database)
                             LoginService.deleteLogin(selectedLogin); // Replace with your actual delete method
 
-                            // Remove the login from the table
-                            ObservableList<LoginBasicView> items = systemPersonsTableView.getItems();
-                            items.remove(selectedLogin); // Remove from the ObservableList
+                            handleRefreshButton(new ActionEvent());
 
-                            filteredData = new FilteredList<>(items, p -> true); // Recreate FilteredList
-                            filteredData.setPredicate(this::applyFilters); // Apply the filter again
-                            systemPersonsTableView.setItems(filteredData); // Update the TableView with the filtered list
-
-                            // Optionally, refresh the table view after removal
-                            systemPersonsTableView.setItems(FXCollections.observableArrayList(items)); // Update the table
                             logger.info("Login with worker ID {} deleted successfully.", selectedLogin.getIdWorker());
                         } catch (Exception ex) {
                             ExceptionHandler.handleException(ex);

@@ -225,16 +225,7 @@ public class ClothesController {
                             // Perform deletion in data source (e.g., repository or database)
                             clothesService.deleteClothes(selectedClothes); // Replace with your actual delete method
 
-                            // Get the underlying items from the TableView (this should be the original list)
-                            ObservableList<ClothesBasicView> items = clothesTableView.getItems();
-
-                            // Remove the selected item from the list
-                            items.remove(selectedClothes);
-
-                            // Recreate FilteredList to reflect changes in the items
-                            filteredData = new FilteredList<>(items, p -> true); // Recreate FilteredList
-                            filteredData.setPredicate(this::applyFilters); // Reapply the filter
-                            clothesTableView.setItems(filteredData); // Update the TableView with the filtered list
+                            handleRefreshButton(new ActionEvent());
 
                             logger.info("Clothes with ID {} deleted successfully.", selectedClothes.getIdClothes());
                         } catch (Exception ex) {
