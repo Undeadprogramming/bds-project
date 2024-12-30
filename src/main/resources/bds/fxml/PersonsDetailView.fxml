@@ -22,9 +22,7 @@
                 <RowConstraints minHeight="40.0" prefHeight="30.0" vgrow="SOMETIMES" />
                 <RowConstraints maxHeight="66.0" minHeight="40.0" prefHeight="39.0" vgrow="SOMETIMES" />
                 <RowConstraints maxHeight="57.0" minHeight="40.0" prefHeight="57.0" />
-            <RowConstraints maxHeight="57.0" minHeight="40.0" prefHeight="57.0" />
-            <RowConstraints maxHeight="57.0" minHeight="40.0" prefHeight="57.0" />
-            <RowConstraints maxHeight="57.0" minHeight="40.0" prefHeight="57.0" />
+
                 <RowConstraints />
             </rowConstraints>
             <children>

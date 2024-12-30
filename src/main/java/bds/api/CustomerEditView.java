@@ -3,8 +3,8 @@ package bds.api;
 public class CustomerEditView {
 
     private Long idCustomer;        // Represents the customer ID
-    private String userName;        // Represents the username (login)
-    private String password;        // Represents the password for the login
+    private String firstName;       // Represents the customer's first name
+    private String lastName;        // Represents the customer's last name
 
     // Getter and Setter methods
     public Long getIdCustomer() {
@@ -15,29 +15,29 @@ public class CustomerEditView {
         this.idCustomer = idCustomer;
     }
 
-    public String getUserName() {
-        return userName;
+    public String getFirstName() {
+        return firstName;
     }
 
-    public void setUserName(String userName) {
-        this.userName = userName;
+    public void setFirstName(String firstName) {
+        this.firstName = firstName;
     }
 
-    public String getPassword() {
-        return password;
+    public String getLastName() {
+        return lastName;
     }
 
-    public void setPassword(String password) {
-        this.password = password;
+    public void setLastName(String lastName) {
+        this.lastName = lastName;
     }
 
-    // toString method for displaying information about the customer login
+    // toString method for displaying information about the customer
     @Override
     public String toString() {
-        return "CustomerLoginEditView{" +
-                "userName='" + userName + '\'' +
-                ", password='" + password + '\'' +
-                ", idCustomer=" + idCustomer +
+        return "CustomerEditView{" +
+                "idCustomer=" + idCustomer +
+                ", firstName='" + firstName + '\'' +
+                ", lastName='" + lastName + '\'' +
                 '}';
     }
 }

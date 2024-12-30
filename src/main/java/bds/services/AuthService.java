@@ -2,9 +2,8 @@ package bds.services;
 
 import bds.api.LoginAuthView;
 
-import bds.controllers.LoginController;
 import bds.data.LoginRepository;
-import bds.data.PersonRepository;
+import bds.data.WorkerRepository;
 import bds.exceptions.ResourceNotFoundException;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -14,7 +13,7 @@ import static bds.services.Argon2FactoryService.ARGON2;
 
 public class AuthService {
     private static final Logger logger = LoggerFactory.getLogger(AuthService.class);
-    private PersonRepository personRepository;
+    private WorkerRepository workerRepository;
     private LoginRepository loginRepository;
 
     public AuthService(LoginRepository loginRepository) {

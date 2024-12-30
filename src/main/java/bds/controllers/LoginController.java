@@ -1,9 +1,7 @@
 package bds.controllers;
 
 import bds.App;
-import bds.api.LoginBasicView;
 import bds.data.LoginRepository;
-import bds.data.PersonRepository;
 import bds.exceptions.DataAccessException;
 import bds.exceptions.ExceptionHandler;
 import bds.exceptions.ResourceNotFoundException;
@@ -12,7 +10,6 @@ import de.jensd.fx.glyphs.GlyphsDude;
 import de.jensd.fx.glyphs.fontawesome.FontAwesomeIcon;
 import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
-import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
@@ -114,7 +111,7 @@ public class LoginController {
 
             if (authenticated) {
                 showMenuView();
-                //showPersonsView();
+
             } else {
                 logger.info("username:{}", username);
                 logger.info("password:{}", password);
@@ -127,32 +124,11 @@ public class LoginController {
         }
     }
 
-    private void showPersonsView() {
-        try {
-            FXMLLoader fxmlLoader = new FXMLLoader();
-            fxmlLoader.setLocation(App.class.getResource("fxml/Persons.fxml"));
-            Scene scene = new Scene(fxmlLoader.load(), 1050, 600);
-            Stage stage = new Stage();
-            stage.setTitle("Database login table");
-            stage.setScene(scene);
-
-            Stage stageOld = (Stage) signInButton.getScene().getWindow();
-            stageOld.close();
-
-            stage.getIcons().add(new Image(App.class.getResourceAsStream("logos/logo.png")));
-            authConfirmDialog();
-
-            stage.show();
-        } catch (IOException ex) {
-            ExceptionHandler.handleException(ex);
-        }
-    }
-
     private void showMenuView() {
         try {
             FXMLLoader fxmlLoader = new FXMLLoader();
             fxmlLoader.setLocation(App.class.getResource("fxml/menu.fxml"));
-            Scene scene = new Scene(fxmlLoader.load(), 800, 400); // Adjust the size as needed
+            Scene scene = new Scene(fxmlLoader.load(), 800, 500); // Adjust the size as needed
             Stage stage = new Stage();
             stage.setTitle("Main Menu");
             stage.setScene(scene);

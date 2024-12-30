@@ -1,45 +1,43 @@
 package bds.api;
 
-import java.util.Arrays;
-
 public class CustomerCreateView {
 
-    private String userName;
-    private char[] password;
-    private int idCustomer;
+    private long idCustomer;
+    private String firstName;
+    private String lastName;
 
     // Getters and Setters
-    public String getUserName() {
-        return userName;
-    }
-
-    public void setUserName(String userName) {
-        this.userName = userName;
-    }
-
-    public char[] getPassword() {
-        return password;
-    }
-
-    public void setPassword(char[] password) {
-        this.password = password;
-    }
-
-    public int getIdCustomer() {
+    public long getIdCustomer() {
         return idCustomer;
     }
 
-    public void setIdCustomer(int idCustomer) {
+    public void setIdCustomer(long idCustomer) {
         this.idCustomer = idCustomer;
+    }
+
+    public String getFirstName() {
+        return firstName;
+    }
+
+    public void setFirstName(String firstName) {
+        this.firstName = firstName;
+    }
+
+    public String getLastName() {
+        return lastName;
+    }
+
+    public void setLastName(String lastName) {
+        this.lastName = lastName;
     }
 
     // toString method
     @Override
     public String toString() {
-        return "CustomerLoginCreateView{" +
-                "userName='" + userName + '\'' +
-                ", password='" + Arrays.toString(password) + '\'' +
-                ", idCustomer=" + idCustomer +
+        return "CustomerAuthView{" +
+                "idCustomer=" + idCustomer +
+                ", firstName='" + firstName + '\'' +
+                ", lastName='" + lastName + '\'' +
                 '}';
     }
 }

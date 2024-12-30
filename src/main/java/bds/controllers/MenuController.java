@@ -43,12 +43,44 @@ public class MenuController {
     }
 
     public void workerButton(ActionEvent actionEvent) {
+        try {
+            FXMLLoader fxmlLoader = new FXMLLoader();
+            fxmlLoader.setLocation(App.class.getResource("fxml/Worker.fxml"));
+            Scene scene = new Scene(fxmlLoader.load(), 1150, 600);
+            Stage stage = new Stage();
+            stage.setTitle("Database login table");
+            stage.setScene(scene);
+
+
+
+            stage.getIcons().add(new Image(App.class.getResourceAsStream("logos/logo.png")));
+
+            stage.show();
+        } catch (IOException ex) {
+            ExceptionHandler.handleException(ex);
+        }
     }
 
     public void attackButton(ActionEvent actionEvent) {
     }
 
     public void workplaceButton(ActionEvent actionEvent) {
+        try {
+            FXMLLoader fxmlLoader = new FXMLLoader();
+            fxmlLoader.setLocation(App.class.getResource("fxml/Workplace.fxml"));
+            Scene scene = new Scene(fxmlLoader.load(), 1050, 600);
+            Stage stage = new Stage();
+            stage.setTitle("Database login table");
+            stage.setScene(scene);
+
+
+
+            stage.getIcons().add(new Image(App.class.getResourceAsStream("logos/logo.png")));
+
+            stage.show();
+        } catch (IOException ex) {
+            ExceptionHandler.handleException(ex);
+        }
     }
 
     public void clothesButton(ActionEvent actionEvent) {
@@ -71,5 +103,21 @@ public class MenuController {
     }
 
     public void customerButton(ActionEvent actionEvent) {
+        try {
+            FXMLLoader fxmlLoader = new FXMLLoader();
+            fxmlLoader.setLocation(App.class.getResource("fxml/Customer.fxml"));
+            Scene scene = new Scene(fxmlLoader.load(), 1050, 600);
+            Stage stage = new Stage();
+            stage.setTitle("Database login table");
+            stage.setScene(scene);
+
+
+
+            stage.getIcons().add(new Image(App.class.getResourceAsStream("logos/logo.png")));
+
+            stage.show();
+        } catch (IOException ex) {
+            ExceptionHandler.handleException(ex);
+        }
     }
 }

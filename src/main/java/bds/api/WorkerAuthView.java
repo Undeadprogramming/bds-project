@@ -1,14 +1,23 @@
 package bds.api;
 
-public class WorkerCreateView {
-
+public class WorkerAuthView {
+    private int idWorker;
     private String firstName;
     private String middleName;
     private String lastName;
     private int age;
     private String gender;
     private String position;
-    private int salary;  // Changed from double to int
+    private int salary;
+
+    // Getters and Setters
+    public int getIdWorker() {
+        return idWorker;
+    }
+
+    public void setIdWorker(int idWorker) {
+        this.idWorker = idWorker;
+    }
 
     public String getFirstName() {
         return firstName;
@@ -59,23 +68,24 @@ public class WorkerCreateView {
     }
 
     public int getSalary() {
-        return salary;  // Changed to return int
+        return salary;
     }
 
     public void setSalary(int salary) {
-        this.salary = salary;  // Changed to accept int
+        this.salary = salary;
     }
 
     @Override
     public String toString() {
-        return "WorkerCreateView{" +
-                "firstName='" + firstName + '\'' +
+        return "Worker{" +
+                "idWorker=" + idWorker +
+                ", firstName='" + firstName + '\'' +
                 ", middleName='" + middleName + '\'' +
                 ", lastName='" + lastName + '\'' +
                 ", age=" + age +
                 ", gender='" + gender + '\'' +
                 ", position='" + position + '\'' +
-                ", salary=" + salary +  // Adjusted to reflect int type
+                ", salary=" + salary +
                 '}';
     }
 }
