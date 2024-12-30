@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<AnchorPane xmlns="http://javafx.com/javafx"
+            xmlns:fx="http://javafx.com/fxml"
+            fx:controller="bds.controllers.AttackController"
+            prefHeight="600.0" prefWidth="800.0">
+
+    <HBox spacing="10" alignment="CENTER" AnchorPane.topAnchor="20.0" AnchorPane.bottomAnchor="20.0" AnchorPane.leftAnchor="20.0" AnchorPane.rightAnchor="20.0">
+        <VBox spacing="10" alignment="CENTER" prefWidth="380.0">
+            <Label text="SQL Injection Simulator" style="-fx-font-size: 18px; -fx-font-weight: bold;" />
+            <Label text="Query Execution:" style="-fx-font-size: 14px; -fx-font-weight: bold;" />
+            <TextArea fx:id="normalQueryInput" promptText="Enter a regular SQL query here..." prefHeight="80" />
+            <Button text="Execute Query" onAction="#executeNormalQuery" />
+            <TextArea fx:id="normalQueryOutput" editable="false" promptText="Results of the regular query will appear here..." prefHeight="80" />
+        </VBox>
+
+        <VBox spacing="10" alignment="CENTER" prefWidth="380.0">
+            <Label text="Premade Queries" style="-fx-font-size: 18px; -fx-font-weight: bold;" />
+            <Label text="Queries:" style="-fx-font-size: 14px; -fx-font-weight: bold;" />
+            <ListView fx:id="normalQueries" prefHeight="200.0" prefWidth="350.0" onMouseClicked="#insertNormalQuery"/>
+        </VBox>
+    </HBox>
+</AnchorPane>

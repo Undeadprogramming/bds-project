@@ -19,11 +19,6 @@ public class MenuController {
     }
 
     public void loginButton(ActionEvent actionEvent) {
-        showPersonsView();
-    }
-
-
-    private void showPersonsView() {
         try {
             FXMLLoader fxmlLoader = new FXMLLoader();
             fxmlLoader.setLocation(App.class.getResource("fxml/Persons.fxml"));
@@ -48,7 +43,7 @@ public class MenuController {
             fxmlLoader.setLocation(App.class.getResource("fxml/Worker.fxml"));
             Scene scene = new Scene(fxmlLoader.load(), 1150, 600);
             Stage stage = new Stage();
-            stage.setTitle("Database login table");
+            stage.setTitle("Database worker table");
             stage.setScene(scene);
 
 
@@ -62,6 +57,22 @@ public class MenuController {
     }
 
     public void attackButton(ActionEvent actionEvent) {
+        try {
+            FXMLLoader fxmlLoader = new FXMLLoader();
+            fxmlLoader.setLocation(App.class.getResource("fxml/Attack.fxml"));
+            Scene scene = new Scene(fxmlLoader.load(), 1050, 600);
+            Stage stage = new Stage();
+            stage.setTitle("Database attack table");
+            stage.setScene(scene);
+
+
+
+            stage.getIcons().add(new Image(App.class.getResourceAsStream("logos/logo.png")));
+
+            stage.show();
+        } catch (IOException ex) {
+            ExceptionHandler.handleException(ex);
+        }
     }
 
     public void workplaceButton(ActionEvent actionEvent) {
@@ -70,7 +81,7 @@ public class MenuController {
             fxmlLoader.setLocation(App.class.getResource("fxml/Workplace.fxml"));
             Scene scene = new Scene(fxmlLoader.load(), 1050, 600);
             Stage stage = new Stage();
-            stage.setTitle("Database login table");
+            stage.setTitle("Database workplace table");
             stage.setScene(scene);
 
 
@@ -89,7 +100,7 @@ public class MenuController {
             fxmlLoader.setLocation(App.class.getResource("fxml/Clothes.fxml"));
             Scene scene = new Scene(fxmlLoader.load(), 1050, 600);
             Stage stage = new Stage();
-            stage.setTitle("Database login table");
+            stage.setTitle("Database clothes table");
             stage.setScene(scene);
 
 
@@ -108,7 +119,7 @@ public class MenuController {
             fxmlLoader.setLocation(App.class.getResource("fxml/Customer.fxml"));
             Scene scene = new Scene(fxmlLoader.load(), 1050, 600);
             Stage stage = new Stage();
-            stage.setTitle("Database login table");
+            stage.setTitle("Database customer table");
             stage.setScene(scene);
 
 
