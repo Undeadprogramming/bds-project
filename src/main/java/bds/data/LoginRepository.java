@@ -8,6 +8,8 @@ import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
 
+import static bds.services.Argon2FactoryService.ARGON2;
+
 public class LoginRepository {
     public void editLogin(LoginEditView loginEditView) {
         String updateLoginSQL = "UPDATE bds.login SET user_name = ?, password = ? WHERE id_worker = ?";
@@ -18,8 +20,9 @@ public class LoginRepository {
 
 
             try (PreparedStatement updateStmt = connection.prepareStatement(updateLoginSQL)) {
+                String text = String.valueOf( loginEditView.getPassword());
                 updateStmt.setString(1, loginEditView.getUserName());
-                updateStmt.setString(2, loginEditView.getPassword());
+                updateStmt.setString(2, text);
                 updateStmt.setLong(3, loginEditView.getIdWorker());
 
                 int affectedRows = updateStmt.executeUpdate();
@@ -56,13 +59,13 @@ public class LoginRepository {
         }
     }
 
-    public LoginAuthView findPersonByEmail(String email) {
+    public LoginAuthView findLoginByUsername(String username) {
         try (Connection connection = DataSourceConfig.getConnection();
              PreparedStatement preparedStatement = connection.prepareStatement(
                      "SELECT user_name, password" +
                              " FROM bds.login l" +
                              " WHERE l.user_name = ?")) {
-            preparedStatement.setString(1, email);
+            preparedStatement.setString(1, username);
             try (ResultSet resultSet = preparedStatement.executeQuery()) {
                 if (resultSet.next()) {
                     return mapToLoginAuth(resultSet);
@@ -73,7 +76,7 @@ public class LoginRepository {
             System.err.println("SQL Exception occurred: " + e.getMessage());
             e.printStackTrace();
 
-            throw new DataAccessException("Find person by ID with addresses failed.", e);
+            throw new DataAccessException("Find login by username with addresses failed.", e);
         }
         return null;
     }
@@ -167,6 +170,19 @@ public class LoginRepository {
         loginBasicView.setUserName(rs.getString("user_name"));
         loginBasicView.setPassword(rs.getString("password"));
         loginBasicView.setIdWorker(rs.getLong("id_worker"));
+
+        if(!loginBasicView.getPassword().startsWith("$argon2"))
+        {
+            String str = new String(ARGON2.hash(10, 65536, 1, loginBasicView.getPassword()));
+            loginBasicView.setPassword(str);
+            LoginEditView loginEditView = new LoginEditView();
+            loginEditView.setUserName(loginBasicView.getUserName());
+            loginEditView.setPassword(loginBasicView.getPassword().toCharArray());
+            loginEditView.setIdWorker(loginBasicView.getIdWorker());
+
+            editLogin(loginEditView);
+        }
+
         return loginBasicView;
     }
 }

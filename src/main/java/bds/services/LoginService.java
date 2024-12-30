@@ -31,6 +31,7 @@ public class LoginService {
     public void createLogin(LoginCreateView loginCreateView) {
 
         char[] originalPassword = loginCreateView.getPassword();
+
         char[] hashedPassword = hashPassword(originalPassword);
         loginCreateView.setPassword(hashedPassword);
 
@@ -38,7 +39,12 @@ public class LoginService {
         System.out.println("Login was created successfully for user: " + loginCreateView.getUserName());
     }
 
+
     public void editLogin(LoginEditView loginEditView) {
+        char[] originalPassword = loginEditView.getPassword();
+        char[] hashedPassword = hashPassword(originalPassword);
+        loginEditView.setPassword(hashedPassword);
+
         loginRepository.editLogin(loginEditView);
     }
 

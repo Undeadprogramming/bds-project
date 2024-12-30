@@ -20,8 +20,8 @@ public class AuthService {
         this.loginRepository = loginRepository;
     }
 
-    private LoginAuthView findloginByEmail(String email) {
-        return loginRepository.findPersonByEmail(email);
+    private LoginAuthView findloginByUsername(String username) {
+        return loginRepository.findLoginByUsername(username);
     }
 
     public boolean authenticate(String username, String password) {
@@ -31,7 +31,7 @@ public class AuthService {
             return false;
         }
 
-        LoginAuthView loginAuthView = findloginByEmail(username);
+        LoginAuthView loginAuthView = findloginByUsername(username);
 
 
         if (loginAuthView== null) {
@@ -39,8 +39,13 @@ public class AuthService {
         }
         System.out.println(loginAuthView.getPassword());
         System.out.println(password.toCharArray());
-        String str = new String(ARGON2.hash(10, 65536, 1, loginAuthView.getPassword()));
-        loginAuthView.setPassword(str);
+
+        if(!loginAuthView.getPassword().startsWith("$argon2"))
+        {
+            String str = new String(ARGON2.hash(10, 65536, 1, loginAuthView.getPassword()));
+            loginAuthView.setPassword(str);
+        }
+
         logger.info(" password mine:{}",password.toCharArray());
         logger.info(" password data:{}",loginAuthView.getPassword());
         logger.info(" result:{}",ARGON2.verify(loginAuthView.getPassword(), password.toCharArray()));

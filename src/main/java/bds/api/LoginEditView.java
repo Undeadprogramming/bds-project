@@ -1,10 +1,12 @@
 package bds.api;
 
+import java.util.Arrays;
+
 public class LoginEditView {
 
     private Long idWorker;
     private String userName;
-    private String password;
+    private char[] password;
 
     public Long getIdWorker() {
         return idWorker;
@@ -22,19 +24,25 @@ public class LoginEditView {
         this.userName = userName;
     }
 
-    public String getPassword() {
+    public char[] getPassword() {
         return password;
     }
 
-    public void setPassword(String password) {
+    public void setPassword(char[] password) {
         this.password = password;
+    }
+
+    public void clearPassword() {
+        if (this.password != null) {
+            Arrays.fill(this.password, '\0');
+        }
     }
 
     @Override
     public String toString() {
         return "LoginEditView{" +
                 "userName='" + userName + '\'' +
-                ", password='" + password + '\'' +
+                ", password='" + Arrays.toString(password) + '\'' +
                 ", idWorker=" + idWorker +
                 '}';
     }

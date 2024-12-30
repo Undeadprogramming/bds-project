@@ -90,7 +90,7 @@ public class LoginEditController {
         LoginEditView loginEditView = new LoginEditView();
         loginEditView.setIdWorker(idWorker);
         loginEditView.setUserName(userName);
-        loginEditView.setPassword(password);
+        loginEditView.setPassword(password.toCharArray());
 
         loginService.editLogin(loginEditView);
         ((Stage) ((Node) event.getSource()).getScene().getWindow()).close();

@@ -64,7 +64,7 @@ public class LoginsController {
 
 
 
-        ObservableList<LoginBasicView> observablePersonsList = initializePersonsData();
+        ObservableList<LoginBasicView> observablePersonsList = initializeLoginData();
         filteredData = new FilteredList<>(observablePersonsList, p -> true);
         systemPersonsTableView.setItems(filteredData);
 
@@ -207,7 +207,7 @@ public class LoginsController {
         systemPersonsTableView.setContextMenu(menu);
     }
 
-    private ObservableList<LoginBasicView> initializePersonsData() {
+    private ObservableList<LoginBasicView> initializeLoginData() {
         List<LoginBasicView> persons = LoginService.getLoginBasicView();
         return FXCollections.observableArrayList(persons);
     }
@@ -239,7 +239,7 @@ public class LoginsController {
     }
 
     public void handleRefreshButton(ActionEvent actionEvent) {
-        ObservableList<LoginBasicView> observablePersonsList = initializePersonsData();
+        ObservableList<LoginBasicView> observablePersonsList = initializeLoginData();
         filteredData = new FilteredList<>(observablePersonsList, p -> true);
         systemPersonsTableView.setItems(filteredData);
         systemPersonsTableView.refresh();
