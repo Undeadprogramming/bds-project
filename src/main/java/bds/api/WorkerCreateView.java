@@ -8,7 +8,7 @@ public class WorkerCreateView {
     private int age;
     private String gender;
     private String position;
-    private int salary;  // Changed from double to int
+    private int salary;
 
     public String getFirstName() {
         return firstName;
@@ -59,11 +59,11 @@ public class WorkerCreateView {
     }
 
     public int getSalary() {
-        return salary;  // Changed to return int
+        return salary;
     }
 
     public void setSalary(int salary) {
-        this.salary = salary;  // Changed to accept int
+        this.salary = salary;
     }
 
     @Override
@@ -75,7 +75,7 @@ public class WorkerCreateView {
                 ", age=" + age +
                 ", gender='" + gender + '\'' +
                 ", position='" + position + '\'' +
-                ", salary=" + salary +  // Adjusted to reflect int type
+                ", salary=" + salary +
                 '}';
     }
 }

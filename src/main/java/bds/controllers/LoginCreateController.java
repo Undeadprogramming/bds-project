@@ -56,22 +56,22 @@ public class LoginCreateController {
 
     @FXML
     void handleCreateNewLogin(ActionEvent event) {
-        // Get the input values for username, password, and worker ID
-        String userName = newLoginUserName.getText(); // Assuming you have a TextField for username input
-        String password = newLoginPassword.getText(); // Assuming you have a TextField for password input
-        String workerId = newLoginIdWorker.getText(); // Assuming you have a TextField for worker ID input
 
-        // Create a LoginCreateView object with the provided information
+        String userName = newLoginUserName.getText();
+        String password = newLoginPassword.getText();
+        String workerId = newLoginIdWorker.getText();
+
+
         LoginCreateView loginCreateView = new LoginCreateView();
         loginCreateView.setUserName(userName);
-        loginCreateView.setPassword(password.toCharArray()); // Assuming LoginCreateView expects a char array for the password
+        loginCreateView.setPassword(password.toCharArray());
         loginCreateView.setIdWorker(Integer.parseInt(workerId));
 
         System.out.println("created: " + loginCreateView.toString());
-        // Call the login service to handle the login creation logic
+
         loginService.createLogin(loginCreateView);
         ((Stage) ((Node) event.getSource()).getScene().getWindow()).close();
-        // Show the confirmation dialog after login creation
+
         loginCreatedConfirmationDialog();
     }
 
@@ -80,7 +80,7 @@ public class LoginCreateController {
         alert.setTitle("Login Created Confirmation");
         alert.setHeaderText("Your login was successfully created.");
 
-        // Automatically close the alert after 3 seconds
+
         Timeline idlestage = new Timeline(new KeyFrame(Duration.seconds(3), new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent event) {

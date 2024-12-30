@@ -11,7 +11,6 @@ public class WorkplaceBasicView {
     private StringProperty seatPlacement = new SimpleStringProperty();
     private IntegerProperty idWorker = new SimpleIntegerProperty();
 
-    // Getter and Setter methods
 
     public long getIdWorkplace() {
         return idWorkplaceProperty().get();
@@ -61,7 +60,7 @@ public class WorkplaceBasicView {
         this.idWorkerProperty().set(idWorker);
     }
 
-    // Property methods for JavaFX bindings
+
 
     public LongProperty idWorkplaceProperty() {
         return idWorkplace;

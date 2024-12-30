@@ -7,7 +7,7 @@ public class CustomerBasicView {
     private StringProperty firstName = new SimpleStringProperty();
     private StringProperty lastName = new SimpleStringProperty();
 
-    // Getter and Setter methods for JavaFX properties
+
 
     public Long getIdCustomer() {
         return idCustomerProperty().get();
@@ -33,7 +33,7 @@ public class CustomerBasicView {
         this.lastNameProperty().set(lastName);
     }
 
-    // JavaFX property accessors
+
 
     public LongProperty idCustomerProperty() {
         return idCustomer;

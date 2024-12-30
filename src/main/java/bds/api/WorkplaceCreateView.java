@@ -8,7 +8,7 @@ public class WorkplaceCreateView {
     private String seatPlacement;
     private int idWorker;
 
-    // Getters and Setters
+
     public long getIdWorkplace() {
         return idWorkplace;
     }
@@ -57,7 +57,7 @@ public class WorkplaceCreateView {
         this.idWorker = idWorker;
     }
 
-    // toString method
+
     @Override
     public String toString() {
         return "WorkplaceCreateView{" +

@@ -10,7 +10,7 @@ public class WorkerAuthView {
     private String position;
     private int salary;
 
-    // Getters and Setters
+
     public int getIdWorker() {
         return idWorker;
     }

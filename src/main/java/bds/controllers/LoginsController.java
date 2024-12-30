@@ -91,7 +91,7 @@ public class LoginsController {
     }
 
     private boolean applyFilters(LoginBasicView login) {
-        // Filter by worker ID
+
         String workerIdText = workerIdFilterField.getText();
         if (workerIdText != null && !workerIdText.isEmpty()) {
             try {
@@ -99,11 +99,11 @@ public class LoginsController {
                     return false;
                 }
             } catch (NumberFormatException e) {
-                return false; // Invalid input doesn't match any record
+                return false;
             }
         }
 
-        // Filter by username
+
         String usernameText = usernameFilterField.getText();
         if (usernameText != null && !usernameText.isEmpty()) {
             if (!login.getUserName().toLowerCase().contains(usernameText.toLowerCase())) {
@@ -111,7 +111,7 @@ public class LoginsController {
             }
         }
 
-        // Filter by password
+
         String passwordText = passwordFilterField.getText();
         if (passwordText != null && !passwordText.isEmpty()) {
             if (!login.getPassword().toLowerCase().contains(passwordText.toLowerCase())) {
@@ -180,7 +180,7 @@ public class LoginsController {
         delete.setOnAction((ActionEvent event) -> {
             LoginBasicView selectedLogin = systemPersonsTableView.getSelectionModel().getSelectedItem();
             if (selectedLogin != null) {
-                // Confirm deletion
+
                 Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
                 alert.setTitle("Delete Confirmation");
                 alert.setHeaderText("Are you sure you want to delete this login?");
@@ -188,8 +188,8 @@ public class LoginsController {
                 alert.showAndWait().ifPresent(response -> {
                     if (response == ButtonType.OK) {
                         try {
-                            // Perform deletion in data source (e.g., repository or database)
-                            LoginService.deleteLogin(selectedLogin); // Replace with your actual delete method
+
+                            LoginService.deleteLogin(selectedLogin);
 
                             handleRefreshButton(new ActionEvent());
 

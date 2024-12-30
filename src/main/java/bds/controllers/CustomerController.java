@@ -82,7 +82,7 @@ public class CustomerController {
     }
 
     private boolean applyFilters(CustomerBasicView customer) {
-        // Filter by customer ID
+
         String customerIdText = customerIdFilterField.getText();
         if (customerIdText != null && !customerIdText.isEmpty()) {
             try {
@@ -90,11 +90,11 @@ public class CustomerController {
                     return false;
                 }
             } catch (NumberFormatException e) {
-                return false; // Invalid input doesn't match any record
+                return false;
             }
         }
 
-        // Filter by first name
+
         String firstNameText = firstNameFilterField.getText();
         if (firstNameText != null && !firstNameText.isEmpty()) {
             if (!customer.getFirstName().toLowerCase().contains(firstNameText.toLowerCase())) {
@@ -102,7 +102,7 @@ public class CustomerController {
             }
         }
 
-        // Filter by last name
+
         String lastNameText = lastNameFilterField.getText();
         if (lastNameText != null && !lastNameText.isEmpty()) {
             if (!customer.getLastName().toLowerCase().contains(lastNameText.toLowerCase())) {
@@ -143,7 +143,7 @@ public class CustomerController {
         delete.setOnAction((ActionEvent event) -> {
             CustomerBasicView selectedCustomer = customerTableView.getSelectionModel().getSelectedItem();
             if (selectedCustomer != null) {
-                // Confirm deletion
+
                 Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
                 alert.setTitle("Delete Confirmation");
                 alert.setHeaderText("Are you sure you want to delete this customer?");

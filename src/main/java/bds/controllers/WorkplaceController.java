@@ -106,7 +106,7 @@ public class WorkplaceController {
     }
 
     private boolean applyFilters(WorkplaceBasicView workplace) {
-        // Filter by workplace ID
+
         String workplaceIdText = workplaceIdFilterField.getText();
         if (workplaceIdText != null && !workplaceIdText.isEmpty()) {
             try {
@@ -114,11 +114,11 @@ public class WorkplaceController {
                     return false;
                 }
             } catch (NumberFormatException e) {
-                return false; // Invalid input doesn't match any record
+                return false;
             }
         }
 
-        // Filter by city
+
         String cityText = cityFilterField.getText();
         if (cityText != null && !cityText.isEmpty()) {
             try {
@@ -130,7 +130,7 @@ public class WorkplaceController {
             }
         }
 
-        // Filter by address
+
         String addressText = addressFilterField.getText();
         if (addressText != null && !addressText.isEmpty()) {
             if (!workplace.getBuildingAddress().toLowerCase().contains(addressText.toLowerCase())) {
@@ -138,7 +138,7 @@ public class WorkplaceController {
             }
         }
 
-        // Filter by floor
+
         String floorText = floorFilterField.getText();
         if (floorText != null && !floorText.isEmpty()) {
             try {
@@ -150,7 +150,7 @@ public class WorkplaceController {
             }
         }
 
-        // Filter by seat placement
+
         String seatPlacementText = seatPlacementFilterField.getText();
         if (seatPlacementText != null && !seatPlacementText.isEmpty()) {
             if (!workplace.getSeatPlacement().toLowerCase().contains(seatPlacementText.toLowerCase())) {
@@ -158,7 +158,6 @@ public class WorkplaceController {
             }
         }
 
-        // Filter by worker ID
         String workerIdText = workerIdFilterField.getText();
         if (workerIdText != null && !workerIdText.isEmpty()) {
             try {
@@ -202,7 +201,7 @@ public class WorkplaceController {
         delete.setOnAction((ActionEvent event) -> {
             WorkplaceBasicView selectedWorkplace = workplaceTableView.getSelectionModel().getSelectedItem();
             if (selectedWorkplace != null) {
-                // Confirm deletion
+
                 Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
                 alert.setTitle("Delete Confirmation");
                 alert.setHeaderText("Are you sure you want to delete this workplace?");
@@ -210,7 +209,7 @@ public class WorkplaceController {
                 alert.showAndWait().ifPresent(response -> {
                     if (response == ButtonType.OK) {
                         try {
-                            // Perform deletion in data source (e.g., repository or database)
+
                             workplaceService.deleteWorkplace(selectedWorkplace);
 
                             handleRefreshButton(new ActionEvent());

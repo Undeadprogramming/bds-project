@@ -114,7 +114,7 @@ public class ClothesController {
     }
 
     private boolean applyFilters(ClothesBasicView clothes) {
-        // Filter by clothes ID
+
         String clothesIdText = clothesIdFilterField.getText();
         if (clothesIdText != null && !clothesIdText.isEmpty()) {
             try {
@@ -122,11 +122,11 @@ public class ClothesController {
                     return false;
                 }
             } catch (NumberFormatException e) {
-                return false; // Invalid input doesn't match any record
+                return false;
             }
         }
 
-        // Filter by name
+
         String nameText = nameFilterField.getText();
         if (nameText != null && !nameText.isEmpty()) {
             if (!clothes.getClothesName().toLowerCase().contains(nameText.toLowerCase())) {
@@ -134,7 +134,7 @@ public class ClothesController {
             }
         }
 
-        // Filter by type
+
         String typeText = typeFilterField.getText();
         if (typeText != null && !typeText.isEmpty()) {
             if (!clothes.getClothesType().toLowerCase().contains(typeText.toLowerCase())) {
@@ -142,7 +142,7 @@ public class ClothesController {
             }
         }
 
-        // Filter by colour
+
         String colourText = colourFilterField.getText();
         if (colourText != null && !colourText.isEmpty()) {
             if (!clothes.getClothesColour().toLowerCase().contains(colourText.toLowerCase())) {
@@ -150,7 +150,7 @@ public class ClothesController {
             }
         }
 
-        // Filter by quantity
+
         String quantityText = quantityFilterField.getText();
         if (quantityText != null && !quantityText.isEmpty()) {
             try {
@@ -158,11 +158,11 @@ public class ClothesController {
                     return false;
                 }
             } catch (NumberFormatException e) {
-                return false; // Invalid input doesn't match any record
+                return false;
             }
         }
 
-        // Filter by size
+
         String sizeText = sizeFilterField.getText();
         if (sizeText != null && !sizeText.isEmpty()) {
             if (!clothes.getClothesSize().toLowerCase().contains(sizeText.toLowerCase())) {
@@ -170,7 +170,7 @@ public class ClothesController {
             }
         }
 
-        // Filter by price
+
         String priceText = priceFilterField.getText();
         if (priceText != null && !priceText.isEmpty()) {
             try {
@@ -178,7 +178,7 @@ public class ClothesController {
                     return false;
                 }
             } catch (NumberFormatException e) {
-                return false; // Invalid input doesn't match any record
+                return false;
             }
         }
 
@@ -214,7 +214,7 @@ public class ClothesController {
         delete.setOnAction((ActionEvent event) -> {
             ClothesBasicView selectedClothes = clothesTableView.getSelectionModel().getSelectedItem();
             if (selectedClothes != null) {
-                // Confirm deletion
+
                 Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
                 alert.setTitle("Delete Confirmation");
                 alert.setHeaderText("Are you sure you want to delete this clothes item?");
@@ -222,8 +222,8 @@ public class ClothesController {
                 alert.showAndWait().ifPresent(response -> {
                     if (response == ButtonType.OK) {
                         try {
-                            // Perform deletion in data source (e.g., repository or database)
-                            clothesService.deleteClothes(selectedClothes); // Replace with your actual delete method
+
+                            clothesService.deleteClothes(selectedClothes);
 
                             handleRefreshButton(new ActionEvent());
 

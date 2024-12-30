@@ -42,7 +42,7 @@ public class LoginEditController {
     private LoginRepository loginRepository;
     private ValidationSupport validation;
 
-    // Used to reference the stage and to get passed data through it
+
     public Stage stage;
 
     public void setStage(Stage stage) {
@@ -82,7 +82,7 @@ public class LoginEditController {
 
     @FXML
     public void handleEditLoginButton(ActionEvent event) {
-        // Extract login details from the form
+
         Long idWorker = Long.valueOf(idWorkerTextField.getText());
         String userName = userNameTextField.getText();
         String password = passwordTextField.getText();
@@ -102,7 +102,7 @@ public class LoginEditController {
         alert.setTitle("Login Edited Confirmation");
         alert.setHeaderText("Your login was successfully edited.");
 
-        // Close the confirmation dialog after 3 seconds
+
         Timeline idlestage = new Timeline(new KeyFrame(Duration.seconds(3), new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent event) {

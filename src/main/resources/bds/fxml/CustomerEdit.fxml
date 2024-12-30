@@ -22,7 +22,7 @@
                 <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
             </rowConstraints>
             <children>
-                <!-- Labels for customer form -->
+
                 <Label text="ID">
                     <padding>
                         <Insets left="5.0" />
@@ -39,7 +39,7 @@
                     </padding>
                 </Label>
 
-                <!-- Fields for customer form -->
+
                 <TextField fx:id="idCustomerTextField" promptText="auto-generated" GridPane.columnIndex="1" GridPane.rowIndex="0" editable="false" />
                 <TextField fx:id="firstNameTextField" promptText="Enter first name" GridPane.columnIndex="1" GridPane.rowIndex="1" />
                 <TextField fx:id="lastNameTextField" promptText="Enter last name" GridPane.columnIndex="1" GridPane.rowIndex="2" />

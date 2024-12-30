@@ -40,7 +40,7 @@ public class CustomerEditController {
     private CustomerRepository customerRepository;
     private ValidationSupport validation;
 
-    // Used to reference the stage and to get passed data through it
+
     public Stage stage;
 
     public void setStage(Stage stage) {
@@ -65,9 +65,7 @@ public class CustomerEditController {
         logger.info("CustomerEditController initialized");
     }
 
-    /**
-     * Load passed data from the previous controller.
-     */
+
     private void loadCustomerData() {
         Stage stage = this.stage;
         if (stage.getUserData() instanceof CustomerBasicView) {
@@ -80,7 +78,7 @@ public class CustomerEditController {
 
     @FXML
     public void handleEditCustomerButton(ActionEvent event) {
-        // Extract customer details from the form
+
         Long idCustomer = Long.valueOf(idCustomerTextField.getText());
         String firstName = firstNameTextField.getText();
         String lastName = lastNameTextField.getText();
@@ -100,7 +98,7 @@ public class CustomerEditController {
         alert.setTitle("Customer Edited Confirmation");
         alert.setHeaderText("The customer record was successfully edited.");
 
-        // Close the confirmation dialog after 3 seconds
+
         Timeline idlestage = new Timeline(new KeyFrame(Duration.seconds(3), new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent event) {

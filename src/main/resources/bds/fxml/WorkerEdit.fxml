@@ -27,7 +27,7 @@
                 <RowConstraints minHeight="15.0" prefHeight="15.0" vgrow="ALWAYS" />
             </rowConstraints>
             <children>
-                <!-- Labels for worker form -->
+
                 <Label text="ID" GridPane.rowIndex="0">
                     <padding>
                         <Insets left="5.0" />
@@ -69,7 +69,7 @@
                     </padding>
                 </Label>
 
-                <!-- Fields for worker form -->
+
                 <TextField fx:id="idTextField" promptText="auto-generated" GridPane.columnIndex="1" GridPane.rowIndex="0" editable="false" />
                 <TextField fx:id="firstNameTextField" promptText="Enter first name" GridPane.columnIndex="1" GridPane.rowIndex="1" />
                 <TextField fx:id="middleNameTextField" promptText="Enter middle name" GridPane.columnIndex="1" GridPane.rowIndex="2" />

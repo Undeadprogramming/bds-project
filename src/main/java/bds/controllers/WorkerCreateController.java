@@ -10,7 +10,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
 import javafx.util.Duration;
 import bds.api.WorkerCreateView;
-import bds.services.WorkerService; // Assuming a WorkerService for creating workers
+import bds.services.WorkerService;
 import org.controlsfx.validation.ValidationSupport;
 import org.controlsfx.validation.Validator;
 import org.slf4j.Logger;
@@ -44,7 +44,7 @@ public class WorkerCreateController {
     @FXML
     private TextField newWorkerSalary;
 
-    private WorkerService workerService; // Assuming a WorkerService to handle worker creation
+    private WorkerService workerService;
     private ValidationSupport validation;
 
     @FXML
@@ -53,16 +53,15 @@ public class WorkerCreateController {
         workerService = new WorkerService(workerRepository);
         validation = new ValidationSupport();
 
-        // Make sure first name and last name are not empty
+
         validation.registerValidator(newWorkerFirstName, Validator.createEmptyValidator("The first name must not be empty."));
         validation.registerValidator(newWorkerLastName, Validator.createEmptyValidator("The last name must not be empty."));
 
-        // Age and Salary must be valid numbers
+
         validation.registerValidator(newWorkerAge, Validator.createRegexValidator("Age must be a number.", "\\d+", null));
         validation.registerValidator(newWorkerSalary, Validator.createRegexValidator("Salary must be a number.", "\\d+", null));
         validation.registerValidator(newWorkerPosition, Validator.createEmptyValidator("The position must not be empty."));
-        // Middle name and gender are optional, so no validation needed for these fields
-        // We don't register any validation for newWorkerMiddleName or newWorkerGender
+
 
         newWorkerCreateButton.disableProperty().bind(validation.invalidProperty());
         logger.info("WorkerCreateController initialized");
@@ -73,15 +72,15 @@ public class WorkerCreateController {
         try {
             WorkerCreateView workerCreateView = new WorkerCreateView();
             workerCreateView.setFirstName(newWorkerFirstName.getText());
-            workerCreateView.setMiddleName(newWorkerMiddleName.getText());  // Middle name can be null
+            workerCreateView.setMiddleName(newWorkerMiddleName.getText());
             workerCreateView.setLastName(newWorkerLastName.getText());
             workerCreateView.setAge(Integer.parseInt(newWorkerAge.getText()));
-            workerCreateView.setGender(newWorkerGender.getText());  // Gender can be null
+            workerCreateView.setGender(newWorkerGender.getText());
             workerCreateView.setPosition(newWorkerPosition.getText());
-            workerCreateView.setSalary(Integer.parseInt(newWorkerSalary.getText())); // Updated to parse as int
+            workerCreateView.setSalary(Integer.parseInt(newWorkerSalary.getText()));
 
-            // Call WorkerService to create the worker
-            workerService.createWorker(workerCreateView); // Assuming you have createWorker method
+
+            workerService.createWorker(workerCreateView);
 
             workerCreatedConfirmationDialog();
         } catch (NumberFormatException e) {

@@ -14,7 +14,7 @@ import javafx.stage.Stage;
 import javafx.util.Duration;
 import bds.api.WorkerBasicView;
 import bds.api.WorkerEditView;
-import bds.services.WorkerService; // Assuming you have a WorkerService to handle editing
+import bds.services.WorkerService;
 import org.controlsfx.validation.ValidationSupport;
 import org.controlsfx.validation.Validator;
 import org.slf4j.Logger;
@@ -46,10 +46,10 @@ public class WorkerEditController {
     private TextField ageTextField;
 
     private WorkerService workerService;
-    private WorkerRepository workerRepository;// Assuming you have a WorkerService to handle worker updates
+    private WorkerRepository workerRepository;
     private ValidationSupport validation;
 
-    // Stage used to pass and load worker data
+
     public Stage stage;
 
     public void setStage(Stage stage) {
@@ -58,13 +58,13 @@ public class WorkerEditController {
 
     @FXML
     public void initialize() {
-        workerRepository = new WorkerRepository();  // Instantiate WorkerRepository
-        workerService = new WorkerService(workerRepository);  // Instantiate WorkerService with WorkerRepository
+        workerRepository = new WorkerRepository();
+        workerService = new WorkerService(workerRepository);
 
 
         validation = new ValidationSupport();
         validation.registerValidator(idTextField, Validator.createEmptyValidator("The ID must not be empty."));
-        idTextField.setEditable(false);  // ID should not be editable
+        idTextField.setEditable(false);
         validation.registerValidator(firstNameTextField, Validator.createEmptyValidator("The first name must not be empty."));
         validation.registerValidator(lastNameTextField, Validator.createEmptyValidator("The last name must not be empty."));
         validation.registerValidator(positionTextField, Validator.createEmptyValidator("The position must not be empty."));
@@ -77,10 +77,7 @@ public class WorkerEditController {
         logger.info("WorkerEditController initialized");
     }
 
-    /**
-     * Load passed data from another controller, typically the WorkerListController
-     * This assumes the passed data is a WorkerBasicView object
-     */
+
     private void loadWorkerData() {
         Stage stage = this.stage;
         if (stage.getUserData() instanceof WorkerBasicView) {
@@ -99,17 +96,17 @@ public class WorkerEditController {
     @FXML
     public void handleEditWorkerButton(ActionEvent event) {
         try {
-            // Get values from the form
+
             Long id = Long.valueOf(idTextField.getText());
             String firstName = firstNameTextField.getText();
             String middleName = middleNameTextField.getText();
             String lastName = lastNameTextField.getText();
             String gender = genderTextField.getText();
             String position = positionTextField.getText();
-            int age = Integer.parseInt(ageTextField.getText());  // Changed to int
-            int salary = Integer.parseInt(salaryTextField.getText());  // Changed to int
+            int age = Integer.parseInt(ageTextField.getText());
+            int salary = Integer.parseInt(salaryTextField.getText());
 
-            // Create WorkerEditView object with updated information
+
             WorkerEditView workerEditView = new WorkerEditView();
             workerEditView.setIdWorker(id);
             workerEditView.setFirstName(firstName);
@@ -120,8 +117,8 @@ public class WorkerEditController {
             workerEditView.setAge(age);
             workerEditView.setSalary(salary);
 
-            // Call WorkerService to save the changes (update the worker in the database)
-            workerService.editWorker(workerEditView);  // Assuming you have an updateWorker method
+
+            workerService.editWorker(workerEditView);
 
             workerEditedConfirmationDialog();
         } catch (NumberFormatException e) {

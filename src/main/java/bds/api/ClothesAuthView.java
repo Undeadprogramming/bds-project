@@ -10,7 +10,7 @@ public class ClothesAuthView {
     private double clothesPrice;
 
 
-    // Getter and Setter methods
+
 
     public String getClothesName() {
         return clothesName;

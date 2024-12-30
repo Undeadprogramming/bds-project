@@ -14,7 +14,7 @@ public class WorkplaceRepository {
         String updateWorkplaceSQL = "UPDATE bds.workplace SET city = ?, building_address = ?, floor = ?, seat_placement = ?, id_worker = ? WHERE id_workplace = ?";
 
         try (Connection connection = DataSourceConfig.getConnection()) {
-            connection.setAutoCommit(false); // Disable autoCommit for manual transaction handling
+            connection.setAutoCommit(false);
 
             try (PreparedStatement updateStmt = connection.prepareStatement(updateWorkplaceSQL)) {
                 updateStmt.setInt(1, workplaceEditView.getCity());
@@ -29,12 +29,12 @@ public class WorkplaceRepository {
                     throw new DataAccessException("Updating workplace failed, no rows affected.");
                 }
 
-                connection.commit(); // Commit the transaction if no exceptions occurred
+                connection.commit();
             } catch (SQLException e) {
-                connection.rollback(); // Rollback in case of errors
+                connection.rollback();
                 throw new DataAccessException("Error updating workplace. Changes rolled back.", e);
             } finally {
-                connection.setAutoCommit(true); // Restore autoCommit to default
+                connection.setAutoCommit(true);
             }
         } catch (SQLException e) {
             throw new DataAccessException("Error updating workplace: Operation failed.", e);
@@ -82,7 +82,7 @@ public class WorkplaceRepository {
     public void deleteWorkplace(Long idWorkplace) {
         String deleteWorkplaceSQL = "DELETE FROM bds.workplace WHERE id_workplace = ?";
         try (Connection connection = DataSourceConfig.getConnection()) {
-            connection.setAutoCommit(false); // Disable auto-commit for manual transaction handling
+            connection.setAutoCommit(false);
 
             try (PreparedStatement deleteStmt = connection.prepareStatement(deleteWorkplaceSQL)) {
                 deleteStmt.setLong(1, idWorkplace);
@@ -92,12 +92,12 @@ public class WorkplaceRepository {
                     throw new DataAccessException("Deleting workplace failed, no rows affected.");
                 }
 
-                connection.commit(); // Commit the transaction if no exceptions occurred
+                connection.commit();
             } catch (SQLException e) {
-                connection.rollback(); // Rollback in case of errors
+                connection.rollback();
                 throw new DataAccessException("Error deleting workplace. Changes rolled back.", e);
             } finally {
-                connection.setAutoCommit(true); // Restore auto-commit to default
+                connection.setAutoCommit(true);
             }
         } catch (SQLException e) {
             throw new DataAccessException("Error deleting workplace: Operation failed.", e);

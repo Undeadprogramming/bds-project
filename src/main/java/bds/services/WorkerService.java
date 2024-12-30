@@ -18,7 +18,7 @@ public class WorkerService {
     }
 
     public void createWorker(WorkerCreateView workerCreateView) {
-        // Here we can add more business logic for creating a worker if needed
+
         workerRepository.createWorker(workerCreateView);
         System.out.println("Worker was created successfully: " + workerCreateView.getFirstName() + " " + workerCreateView.getLastName());
     }
@@ -33,6 +33,6 @@ public class WorkerService {
         System.out.println("Worker with ID " + selectedWorker.getIdWorker() + " was deleted successfully.");
     }
 
-    // You can add more business logic methods related to workers as needed
+
 
 }

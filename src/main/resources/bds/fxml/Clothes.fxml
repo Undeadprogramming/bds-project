@@ -23,7 +23,7 @@
                 <Insets top="10.0" right="10.0" bottom="10.0" left="10.0"/>
             </padding>
             <children>
-                <!-- Filter Fields -->
+              
                 <HBox spacing="10.0">
                     <children>
                         <Label text="Filters:" />
@@ -36,7 +36,7 @@
                         <TextField fx:id="priceFilterField" promptText="Filter by Price" prefWidth="120"/>
                     </children>
                 </HBox>
-                <!-- TableView -->
+
                 <ScrollPane>
                     <content>
                         <AnchorPane id="Content" maxWidth="1.7976931348623157E308" minHeight="-1.0" minWidth="-Infinity" prefHeight="517.0" prefWidth="592.0">

@@ -52,7 +52,7 @@ public class WorkplaceEditController {
     private WorkplaceRepository workplaceRepository;
     private ValidationSupport validation;
 
-    // Used to reference the stage and to get passed data through it
+
     public Stage stage;
 
     public void setStage(Stage stage) {
@@ -81,9 +81,7 @@ public class WorkplaceEditController {
         logger.info("WorkplaceEditController initialized");
     }
 
-    /**
-     * Load passed data from the previous controller.
-     */
+
     private void loadWorkplaceData() {
         Stage stage = this.stage;
         if (stage.getUserData() instanceof WorkplaceBasicView) {
@@ -99,7 +97,7 @@ public class WorkplaceEditController {
 
     @FXML
     public void handleEditWorkplaceButton(ActionEvent event) {
-        // Extract workplace details from the form
+
         Long idWorkplace = Long.valueOf(idWorkplaceTextField.getText());
         int city = Integer.parseInt(workplaceCityTextField.getText());
         String buildingAddress = workplaceAddressTextField.getText();
@@ -125,7 +123,7 @@ public class WorkplaceEditController {
         alert.setTitle("Workplace Edited Confirmation");
         alert.setHeaderText("Your workplace item was successfully edited.");
 
-        // Close the confirmation dialog after 3 seconds
+
         Timeline idlestage = new Timeline(new KeyFrame(Duration.seconds(3), new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent event) {

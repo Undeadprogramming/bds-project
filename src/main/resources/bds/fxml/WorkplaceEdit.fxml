@@ -25,7 +25,6 @@
                 <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
             </rowConstraints>
             <children>
-                <!-- Labels for workplace form -->
                 <Label text="ID (auto-generated)">
                     <padding>
                         <Insets left="5.0" />
@@ -57,7 +56,6 @@
                     </padding>
                 </Label>
 
-                <!-- Fields for workplace form -->
                 <TextField fx:id="idWorkplaceTextField" promptText="auto-generated" GridPane.columnIndex="1" GridPane.rowIndex="0" editable="false" />
                 <TextField fx:id="workplaceCityTextField" promptText="Enter city" GridPane.columnIndex="1" GridPane.rowIndex="1" />
                 <TextField fx:id="workplaceAddressTextField" promptText="Enter building address" GridPane.columnIndex="1" GridPane.rowIndex="2" />

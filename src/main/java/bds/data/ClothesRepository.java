@@ -14,7 +14,7 @@ public class ClothesRepository {
         String updateClothesSQL = "UPDATE bds.clothes SET clothes_name = ?, clothes_type = ?, clothes_colour = ?, clothes_quantity = ?, clothes_size = ?, clothes_price = ? WHERE id_clothes = ?";
 
         try (Connection connection = DataSourceConfig.getConnection()) {
-            connection.setAutoCommit(false); // Disable autoCommit for manual transaction handling
+            connection.setAutoCommit(false);
 
             try (PreparedStatement updateStmt = connection.prepareStatement(updateClothesSQL)) {
                 updateStmt.setString(1, clothesEditView.getClothesName());
@@ -30,12 +30,12 @@ public class ClothesRepository {
                     throw new DataAccessException("Updating clothes failed, no rows affected.");
                 }
 
-                connection.commit(); // Commit the transaction if no exceptions occurred
+                connection.commit();
             } catch (SQLException e) {
-                connection.rollback(); // Rollback in case of errors
+                connection.rollback();
                 throw new DataAccessException("Error updating clothes. Changes rolled back.", e);
             } finally {
-                connection.setAutoCommit(true); // Restore autoCommit to default
+                connection.setAutoCommit(true);
             }
         } catch (SQLException e) {
             throw new DataAccessException("Error updating clothes: Operation failed.", e);
@@ -85,7 +85,7 @@ public class ClothesRepository {
     public void deleteClothes(Long idClothes) {
         String deleteClothesSQL = "DELETE FROM bds.clothes WHERE id_clothes = ?";
         try (Connection connection = DataSourceConfig.getConnection()) {
-            connection.setAutoCommit(false); // Disable auto-commit for manual transaction handling
+            connection.setAutoCommit(false);
 
             try (PreparedStatement deleteStmt = connection.prepareStatement(deleteClothesSQL)) {
                 deleteStmt.setLong(1, idClothes);
@@ -95,12 +95,12 @@ public class ClothesRepository {
                     throw new DataAccessException("Deleting clothes failed, no rows affected.");
                 }
 
-                connection.commit(); // Commit the transaction if no exceptions occurred
+                connection.commit();
             } catch (SQLException e) {
-                connection.rollback(); // Rollback in case of errors
+                connection.rollback();
                 throw new DataAccessException("Error deleting clothes. Changes rolled back.", e);
             } finally {
-                connection.setAutoCommit(true); // Restore auto-commit to default
+                connection.setAutoCommit(true);
             }
         } catch (SQLException e) {
             throw new DataAccessException("Error deleting clothes: Operation failed.", e);

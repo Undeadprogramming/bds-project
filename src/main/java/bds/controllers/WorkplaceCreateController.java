@@ -63,14 +63,14 @@ public class WorkplaceCreateController {
 
     @FXML
     void handleCreateNewWorkplace(ActionEvent event) {
-        // Get the input values for all properties of workplace
-        int city = Integer.parseInt(newWorkplaceCity.getText()); // City ID
-        String buildingAddress = newWorkplaceAddress.getText(); // Building address
-        int floor = Integer.parseInt(newWorkplaceFloor.getText()); // Floor
-        String seatPlacement = newWorkplaceSeatPlacement.getText(); // Seat placement
-        int workerId = Integer.parseInt(newWorkplaceWorkerId.getText()); // Worker ID
 
-        // Create a WorkplaceCreateView object with the provided information
+        int city = Integer.parseInt(newWorkplaceCity.getText());
+        String buildingAddress = newWorkplaceAddress.getText();
+        int floor = Integer.parseInt(newWorkplaceFloor.getText());
+        String seatPlacement = newWorkplaceSeatPlacement.getText();
+        int workerId = Integer.parseInt(newWorkplaceWorkerId.getText());
+
+
         WorkplaceCreateView workplaceCreateView = new WorkplaceCreateView();
         workplaceCreateView.setCity(city);
         workplaceCreateView.setBuildingAddress(buildingAddress);
@@ -78,10 +78,10 @@ public class WorkplaceCreateController {
         workplaceCreateView.setSeatPlacement(seatPlacement);
         workplaceCreateView.setIdWorker(workerId);
 
-        // Call the workplace service to handle the workplace creation logic
+
         workplaceService.createWorkplace(workplaceCreateView);
         ((Stage) ((Node) event.getSource()).getScene().getWindow()).close();
-        // Show the confirmation dialog after workplace creation
+
         workplaceCreatedConfirmationDialog();
     }
 
@@ -90,7 +90,7 @@ public class WorkplaceCreateController {
         alert.setTitle("Workplace Created Confirmation");
         alert.setHeaderText("Your workplace item was successfully created.");
 
-        // Automatically close the alert after 3 seconds
+
         Timeline idlestage = new Timeline(new KeyFrame(Duration.seconds(3), new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent event) {

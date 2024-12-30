@@ -9,7 +9,7 @@ public class ClothesEditView {
     private String clothesSize;
     private double clothesPrice;
 
-    // Getters and Setters
+
     public Long getIdClothes() {
         return idClothes;
     }

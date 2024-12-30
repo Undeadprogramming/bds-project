@@ -31,7 +31,7 @@ public class WorkerController {
     public Button refreshButton;
     public TextField workerIdFilterField;
     public TextField firstNameFilterField;
-    public TextField middleNameFilterField; // Added for middle name filter
+    public TextField middleNameFilterField;
     public TextField lastNameFilterField;
     public TextField ageFilterField;
     public TextField genderFilterField;
@@ -43,7 +43,7 @@ public class WorkerController {
     @FXML
     private TableColumn<WorkerBasicView, String> firstName;
     @FXML
-    private TableColumn<WorkerBasicView, String> middleName; // TableColumn for middle name
+    private TableColumn<WorkerBasicView, String> middleName;
     @FXML
     private TableColumn<WorkerBasicView, String> lastName;
     @FXML
@@ -63,8 +63,8 @@ public class WorkerController {
 
     @FXML
     private void initialize() {
-        workerRepository = new WorkerRepository();  // Instantiate WorkerRepository
-        workerService = new WorkerService(workerRepository);  // Instantiate WorkerService with WorkerRepository
+        workerRepository = new WorkerRepository();
+        workerService = new WorkerService(workerRepository);
 
         workerId.setCellValueFactory(new PropertyValueFactory<>("idWorker"));
         firstName.setCellValueFactory(new PropertyValueFactory<>("firstName"));
@@ -95,7 +95,7 @@ public class WorkerController {
                 filteredData.setPredicate(this::applyFilters));
 
         middleNameFilterField.textProperty().addListener((observable, oldValue, newValue) ->
-                filteredData.setPredicate(this::applyFilters)); // Added listener for middle name filter
+                filteredData.setPredicate(this::applyFilters));
 
         lastNameFilterField.textProperty().addListener((observable, oldValue, newValue) ->
                 filteredData.setPredicate(this::applyFilters));
@@ -114,7 +114,7 @@ public class WorkerController {
     }
 
     private boolean applyFilters(WorkerBasicView worker) {
-        // Filter by worker ID
+
         String workerIdText = workerIdFilterField.getText();
         if (workerIdText != null && !workerIdText.isEmpty()) {
             try {
@@ -122,11 +122,11 @@ public class WorkerController {
                     return false;
                 }
             } catch (NumberFormatException e) {
-                return false; // Invalid input doesn't match any record
+                return false;
             }
         }
 
-        // Filter by first name
+
         String firstNameText = firstNameFilterField.getText();
         if (firstNameText != null && !firstNameText.isEmpty()) {
             if (!worker.getFirstName().toLowerCase().contains(firstNameText.toLowerCase())) {
@@ -134,15 +134,15 @@ public class WorkerController {
             }
         }
 
-        // Filter by middle name
-        String middleNameText = middleNameFilterField.getText(); // Added filtering by middle name
+
+        String middleNameText = middleNameFilterField.getText();
         if (middleNameText != null && !middleNameText.isEmpty()) {
             if (!worker.getMiddleName().toLowerCase().contains(middleNameText.toLowerCase())) {
                 return false;
             }
         }
 
-        // Filter by last name
+
         String lastNameText = lastNameFilterField.getText();
         if (lastNameText != null && !lastNameText.isEmpty()) {
             if (!worker.getLastName().toLowerCase().contains(lastNameText.toLowerCase())) {
@@ -150,7 +150,7 @@ public class WorkerController {
             }
         }
 
-        // Filter by age
+
         String ageText = ageFilterField.getText();
         if (ageText != null && !ageText.isEmpty()) {
             try {
@@ -162,7 +162,7 @@ public class WorkerController {
             }
         }
 
-        // Filter by gender
+
         String genderText = genderFilterField.getText();
         if (genderText != null && !genderText.isEmpty()) {
             if (!worker.getGender().toLowerCase().contains(genderText.toLowerCase())) {
@@ -170,7 +170,7 @@ public class WorkerController {
             }
         }
 
-        // Filter by position
+
         String positionText = positionFilterField.getText();
         if (positionText != null && !positionText.isEmpty()) {
             if (!worker.getPosition().toLowerCase().contains(positionText.toLowerCase())) {
@@ -178,7 +178,7 @@ public class WorkerController {
             }
         }
 
-        // Filter by salary
+
         String salaryText = salaryFilterField.getText();
         if (salaryText != null && !salaryText.isEmpty()) {
             try {
@@ -223,7 +223,7 @@ public class WorkerController {
         delete.setOnAction((ActionEvent event) -> {
             WorkerBasicView selectedWorker = workerTableView.getSelectionModel().getSelectedItem();
             if (selectedWorker != null) {
-                // Confirm deletion
+
                 Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
                 alert.setTitle("Delete Confirmation");
                 alert.setHeaderText("Are you sure you want to delete this worker?");

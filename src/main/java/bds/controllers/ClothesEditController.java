@@ -48,7 +48,7 @@ public class ClothesEditController {
     private ClothesRepository clothesRepository;
     private ValidationSupport validation;
 
-    // Used to reference the stage and to get passed data through it
+
     public Stage stage;
 
     public void setStage(Stage stage) {
@@ -77,9 +77,7 @@ public class ClothesEditController {
         logger.info("ClothesEditController initialized");
     }
 
-    /**
-     * Load passed data from the previous controller.
-     */
+
     private void loadClothesData() {
         Stage stage = this.stage;
         if (stage.getUserData() instanceof ClothesBasicView) {
@@ -96,7 +94,7 @@ public class ClothesEditController {
 
     @FXML
     public void handleEditClothesButton(ActionEvent event) {
-        // Extract clothes details from the form
+
         Long idClothes = Long.valueOf(idClothesTextField.getText());
         String name = clothesNameTextField.getText();
         String size = clothesSizeTextField.getText();
@@ -124,7 +122,7 @@ public class ClothesEditController {
         alert.setTitle("Clothes Edited Confirmation");
         alert.setHeaderText("Your clothes item was successfully edited.");
 
-        // Close the confirmation dialog after 3 seconds
+
         Timeline idlestage = new Timeline(new KeyFrame(Duration.seconds(3), new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent event) {

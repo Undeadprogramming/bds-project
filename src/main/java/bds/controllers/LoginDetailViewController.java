@@ -32,7 +32,7 @@ public class LoginDetailViewController {
     @FXML
     private TextField lastnameTextField;
 
-    // used to reference the stage and to get passed data through it
+
     private Stage stage;
 
     public void setStage(Stage stage) {

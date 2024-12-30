@@ -14,7 +14,7 @@ public class CustomerRepository {
         String updatecustomerQL = "UPDATE bds.customer SET first_name = ?, last_name = ? WHERE id_customer = ?";
 
         try (Connection connection = DataSourceConfig.getConnection()) {
-            connection.setAutoCommit(false); // Disable autoCommit for manual transaction handling
+            connection.setAutoCommit(false);
 
             try (PreparedStatement updateStmt = connection.prepareStatement(updatecustomerQL)) {
                 updateStmt.setString(1, customerEditView.getFirstName());
@@ -26,12 +26,12 @@ public class CustomerRepository {
                     throw new DataAccessException("Updating customer failed, no rows affected.");
                 }
 
-                connection.commit(); // Commit the transaction if no exceptions occurred
+                connection.commit();
             } catch (SQLException e) {
-                connection.rollback(); // Rollback in case of errors
+                connection.rollback();
                 throw new DataAccessException("Error updating customer. Changes rolled back.", e);
             } finally {
-                connection.setAutoCommit(true); // Restore autoCommit to default
+                connection.setAutoCommit(true);
             }
         } catch (SQLException e) {
             throw new DataAccessException("Error updating customer: Operation failed.", e);
@@ -75,7 +75,7 @@ public class CustomerRepository {
     public void deleteCustomer(Long idCustomer) {
         String deletecustomerQL = "DELETE FROM bds.customer WHERE id_customer = ?";
         try (Connection connection = DataSourceConfig.getConnection()) {
-            connection.setAutoCommit(false); // Disable auto-commit for manual transaction handling
+            connection.setAutoCommit(false);
 
             try (PreparedStatement deleteStmt = connection.prepareStatement(deletecustomerQL)) {
                 deleteStmt.setLong(1, idCustomer);
@@ -85,12 +85,12 @@ public class CustomerRepository {
                     throw new DataAccessException("Deleting customer failed, no rows affected.");
                 }
 
-                connection.commit(); // Commit the transaction if no exceptions occurred
+                connection.commit();
             } catch (SQLException e) {
-                connection.rollback(); // Rollback in case of errors
+                connection.rollback();
                 throw new DataAccessException("Error deleting customer. Changes rolled back.", e);
             } finally {
-                connection.setAutoCommit(true); // Restore auto-commit to default
+                connection.setAutoCommit(true);
             }
         } catch (SQLException e) {
             throw new DataAccessException("Error deleting customer: Operation failed.", e);

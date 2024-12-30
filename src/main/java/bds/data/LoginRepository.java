@@ -13,7 +13,7 @@ public class LoginRepository {
         String updateLoginSQL = "UPDATE bds.login SET user_name = ?, password = ? WHERE id_worker = ?";
 
         try (Connection connection = DataSourceConfig.getConnection()) {
-            connection.setAutoCommit(false); // Disable autoCommit for manual transaction handling
+            connection.setAutoCommit(false);
 
 
 
@@ -27,12 +27,12 @@ public class LoginRepository {
                     throw new DataAccessException("Updating login failed, no rows affected.");
                 }
 
-                connection.commit(); // Commit the transaction if no exceptions occurred
+                connection.commit();
             } catch (SQLException e) {
-                connection.rollback(); // Rollback in case of errors
+                connection.rollback();
                 throw new DataAccessException("Error updating login. Changes rolled back.", e);
             } finally {
-                connection.setAutoCommit(true); // Restore autoCommit to default
+                connection.setAutoCommit(true);
             }
         } catch (SQLException e) {
             throw new DataAccessException("Error updating login: Operation failed.", e);
@@ -69,11 +69,10 @@ public class LoginRepository {
                 }
             }
         } catch (SQLException e) {
-            // Log the exception
-            System.err.println("SQL Exception occurred: " + e.getMessage()); // Quick debugging
-            e.printStackTrace(); // For full stack trace (optional)
-            // OR use a logger for better error management
-            // logger.error("Find person by email failed: {}", email, e);
+
+            System.err.println("SQL Exception occurred: " + e.getMessage());
+            e.printStackTrace();
+
             throw new DataAccessException("Find person by ID with addresses failed.", e);
         }
         return null;
@@ -103,7 +102,6 @@ public class LoginRepository {
         try (Connection connection = DataSourceConfig.getConnection();
              PreparedStatement preparedStatement = connection.prepareStatement(insertLoginSQL, Statement.RETURN_GENERATED_KEYS)) {
 
-            // Nastavení parametrů do dotazu
             String text = String.valueOf( loginCreateView.getPassword());
             preparedStatement.setString(1, loginCreateView.getUserName());
             preparedStatement.setString(2, text);
@@ -124,7 +122,7 @@ public class LoginRepository {
     public void deleteLogin(Long idWorker) {
         String deleteLoginSQL = "DELETE FROM bds.login WHERE id_worker = ?";
         try (Connection connection = DataSourceConfig.getConnection()) {
-            connection.setAutoCommit(false); // Disable auto-commit for manual transaction handling
+            connection.setAutoCommit(false);
 
 
             try (PreparedStatement deleteStmt = connection.prepareStatement(deleteLoginSQL)) {
@@ -135,12 +133,12 @@ public class LoginRepository {
                     throw new DataAccessException("Deleting login failed, no rows affected.");
                 }
 
-                connection.commit(); // Commit the transaction if no exceptions occurred
+                connection.commit();
             } catch (SQLException e) {
-                connection.rollback(); // Rollback in case of errors
+                connection.rollback();
                 throw new DataAccessException("Error deleting login. Changes rolled back.", e);
             } finally {
-                connection.setAutoCommit(true); // Restore auto-commit to default
+                connection.setAutoCommit(true);
             }
         } catch (SQLException e) {
             throw new DataAccessException("Error deleting login: Operation failed.", e);

@@ -11,7 +11,7 @@ public class WorkerEditView {
     private String position;
     private int salary;
 
-    // Getters and Setters
+
     public Long getIdWorker() {
         return idWorker;
     }

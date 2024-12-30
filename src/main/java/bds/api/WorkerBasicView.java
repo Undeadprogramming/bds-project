@@ -12,12 +12,12 @@ public class WorkerBasicView {
     private StringProperty firstName = new SimpleStringProperty();
     private StringProperty middleName = new SimpleStringProperty();
     private StringProperty lastName = new SimpleStringProperty();
-    private IntegerProperty age = new SimpleIntegerProperty();  // Changed from LongProperty to IntegerProperty
+    private IntegerProperty age = new SimpleIntegerProperty();
     private StringProperty gender = new SimpleStringProperty();
     private StringProperty position = new SimpleStringProperty();
-    private IntegerProperty salary = new SimpleIntegerProperty();  // Changed from LongProperty to IntegerProperty
+    private IntegerProperty salary = new SimpleIntegerProperty();
 
-    // Getters and Setters
+
     public Long getIdWorker() {
         return idWorker.get();
     }
@@ -50,11 +50,11 @@ public class WorkerBasicView {
         this.lastName.set(lastName);
     }
 
-    public int getAge() {  // Changed return type to int
+    public int getAge() {
         return age.get();
     }
 
-    public void setAge(int age) {  // Changed parameter type to int
+    public void setAge(int age) {
         this.age.set(age);
     }
 
@@ -74,15 +74,15 @@ public class WorkerBasicView {
         this.position.set(position);
     }
 
-    public int getSalary() {  // Changed return type to int
+    public int getSalary() {
         return salary.get();
     }
 
-    public void setSalary(int salary) {  // Changed parameter type to int
+    public void setSalary(int salary) {
         this.salary.set(salary);
     }
 
-    // Property Getters
+
     public LongProperty idWorkerProperty() {
         return idWorker;
     }
@@ -99,7 +99,7 @@ public class WorkerBasicView {
         return lastName;
     }
 
-    public IntegerProperty ageProperty() {  // Changed to IntegerProperty
+    public IntegerProperty ageProperty() {
         return age;
     }
 
@@ -111,7 +111,7 @@ public class WorkerBasicView {
         return position;
     }
 
-    public IntegerProperty salaryProperty() {  // Changed to IntegerProperty
+    public IntegerProperty salaryProperty() {
         return salary;
     }
 

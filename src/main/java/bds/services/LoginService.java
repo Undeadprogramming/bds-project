@@ -12,7 +12,7 @@ import static bds.services.Argon2FactoryService.ARGON2;
  */
 public class LoginService {
 
-    //private PersonRepository personRepository;
+
 
     private LoginRepository loginRepository;
 
@@ -29,7 +29,7 @@ public class LoginService {
     }
 
     public void createLogin(LoginCreateView loginCreateView) {
-        // the following three lines can be written in one code line (only for more clear explanation it is written in three lines
+
         char[] originalPassword = loginCreateView.getPassword();
         char[] hashedPassword = hashPassword(originalPassword);
         loginCreateView.setPassword(hashedPassword);

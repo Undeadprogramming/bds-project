@@ -5,7 +5,7 @@ public class CustomerAuthView {
     private String firstName;
     private String lastName;
 
-    // Getter and Setter methods
+
 
     public long getIdCustomer() {
         return idCustomer;

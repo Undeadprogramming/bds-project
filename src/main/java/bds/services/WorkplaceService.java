@@ -31,7 +31,7 @@ public class WorkplaceService {
      * @param workplaceCreateView the data for the new workplace
      */
     public void createWorkplace(WorkplaceCreateView workplaceCreateView) {
-        // Business logic can be added here if needed
+
         workplaceRepository.createWorkplace(workplaceCreateView);
         System.out.println("Workplace item was created successfully at: " + workplaceCreateView.getBuildingAddress());
     }

@@ -10,7 +10,7 @@ import java.util.List;
 
 public class WorkerRepository {
 
-    // Fetch worker details by worker ID
+
     public WorkerDetailView findWorkerDetailView(Long workerId) {
         try (Connection connection = DataSourceConfig.getConnection();
              PreparedStatement preparedStatement = connection.prepareStatement(
@@ -29,7 +29,7 @@ public class WorkerRepository {
         return null;
     }
 
-    // Fetch a list of all workers (basic view)
+
     public List<WorkerBasicView> getWorkersBasicView() {
         try (Connection connection = DataSourceConfig.getConnection();
              PreparedStatement preparedStatement = connection.prepareStatement(
@@ -46,7 +46,7 @@ public class WorkerRepository {
         }
     }
 
-    // Create a new worker in the database
+
     public void createWorker(WorkerCreateView workerCreateView) {
         String insertWorkerSQL = "INSERT INTO bds.worker (first_name, middle_name, last_name, age, gender, position, salary) VALUES (?,?,?,?,?,?,?)";
         try (Connection connection = DataSourceConfig.getConnection();
@@ -57,7 +57,7 @@ public class WorkerRepository {
             preparedStatement.setInt(4, workerCreateView.getAge());
             preparedStatement.setString(5, workerCreateView.getGender());
             preparedStatement.setString(6, workerCreateView.getPosition());
-            preparedStatement.setInt(7, workerCreateView.getSalary());  // Set as int
+            preparedStatement.setInt(7, workerCreateView.getSalary());
 
             int affectedRows = preparedStatement.executeUpdate();
 
@@ -69,7 +69,7 @@ public class WorkerRepository {
         }
     }
 
-    // Edit an existing worker's information
+
     public void editWorker(WorkerEditView workerEditView) {
         String updateWorkerSQL = "UPDATE bds.worker SET first_name = ?, middle_name = ?, last_name = ?, age = ?, gender = ?, position = ?, salary = ? WHERE id_worker = ?";
         try (Connection connection = DataSourceConfig.getConnection();
@@ -80,7 +80,7 @@ public class WorkerRepository {
             preparedStatement.setInt(4, workerEditView.getAge());
             preparedStatement.setString(5, workerEditView.getGender());
             preparedStatement.setString(6, workerEditView.getPosition());
-            preparedStatement.setInt(7, workerEditView.getSalary());  // Set as int
+            preparedStatement.setInt(7, workerEditView.getSalary());
             preparedStatement.setLong(8, workerEditView.getIdWorker());
 
             int affectedRows = preparedStatement.executeUpdate();
@@ -93,7 +93,6 @@ public class WorkerRepository {
         }
     }
 
-    // Delete a worker by their ID
     public void deleteWorker(Long workerId) {
         String deleteWorkerSQL = "DELETE FROM bds.worker WHERE id_worker = ?";
         try (Connection connection = DataSourceConfig.getConnection();
@@ -110,7 +109,7 @@ public class WorkerRepository {
         }
     }
 
-    // Map the result set to WorkerBasicView
+
     private WorkerBasicView mapToWorkerBasicView(ResultSet rs) throws SQLException {
         WorkerBasicView workerBasicView = new WorkerBasicView();
         workerBasicView.setIdWorker(rs.getLong("id_worker"));
@@ -120,11 +119,11 @@ public class WorkerRepository {
         workerBasicView.setAge(rs.getInt("age"));
         workerBasicView.setGender(rs.getString("gender"));
         workerBasicView.setPosition(rs.getString("position"));
-        workerBasicView.setSalary(rs.getInt("salary"));  // Retrieve as int
+        workerBasicView.setSalary(rs.getInt("salary"));
         return workerBasicView;
     }
 
-    // Map the result set to WorkerDetailView
+
     private WorkerDetailView mapToWorkerDetailView(ResultSet rs) throws SQLException {
         WorkerDetailView workerDetailView = new WorkerDetailView();
         workerDetailView.setIdWorker(rs.getLong("id_worker"));
@@ -134,7 +133,7 @@ public class WorkerRepository {
         workerDetailView.setAge(rs.getInt("age"));
         workerDetailView.setGender(rs.getString("gender"));
         workerDetailView.setPosition(rs.getString("position"));
-        workerDetailView.setSalary(rs.getInt("salary"));  // Retrieve as int
+        workerDetailView.setSalary(rs.getInt("salary"));
         return workerDetailView;
     }
 

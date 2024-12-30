@@ -8,7 +8,7 @@ public class WorkplaceEditView {
     private String seatPlacement;
     private int idWorker;
 
-    // Getters and Setters
+
     public long getIdWorkplace() {
         return idWorkplace;
     }

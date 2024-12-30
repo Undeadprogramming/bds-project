@@ -12,12 +12,12 @@ public class WorkerDetailView {
     private StringProperty firstName = new SimpleStringProperty();
     private StringProperty middleName = new SimpleStringProperty();
     private StringProperty lastName = new SimpleStringProperty();
-    private IntegerProperty age = new SimpleIntegerProperty();  // Changed to IntegerProperty
+    private IntegerProperty age = new SimpleIntegerProperty();
     private StringProperty gender = new SimpleStringProperty();
     private StringProperty position = new SimpleStringProperty();
-    private IntegerProperty salary = new SimpleIntegerProperty();  // Changed to IntegerProperty
+    private IntegerProperty salary = new SimpleIntegerProperty();
 
-    // Getters and Setters
+
     public Long getIdWorker() {
         return idWorker.get();
     }
@@ -82,7 +82,7 @@ public class WorkerDetailView {
         this.salary.set(salary);
     }
 
-    // Property Getters
+
     public LongProperty idWorkerProperty() {
         return idWorker;
     }

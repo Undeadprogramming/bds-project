@@ -6,7 +6,7 @@ public class CustomerCreateView {
     private String firstName;
     private String lastName;
 
-    // Getters and Setters
+
     public long getIdCustomer() {
         return idCustomer;
     }
@@ -31,7 +31,7 @@ public class CustomerCreateView {
         this.lastName = lastName;
     }
 
-    // toString method
+
     @Override
     public String toString() {
         return "CustomerAuthView{" +

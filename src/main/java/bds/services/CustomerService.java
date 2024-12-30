@@ -5,9 +5,7 @@ import bds.data.CustomerRepository;
 
 import java.util.List;
 
-/**
- * Class representing business logic on top of the Customer data.
- */
+
 public class CustomerService {
 
     private CustomerRepository customerRepository;
@@ -21,7 +19,7 @@ public class CustomerService {
     }
 
     public void createCustomer(CustomerCreateView customerCreateView) {
-        // The business logic for creating a new customer can go here
+
         customerRepository.createCustomer(customerCreateView);
         System.out.println("Customer was created successfully: " + customerCreateView.getFirstName() + " " + customerCreateView.getLastName());
     }

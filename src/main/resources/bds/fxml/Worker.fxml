@@ -23,13 +23,13 @@
                 <Insets top="10.0" right="10.0" bottom="10.0" left="10.0"/>
             </padding>
             <children>
-                <!-- Filter Fields -->
+
                 <HBox spacing="10.0">
                     <children>
                         <Label text="Filters:" />
                         <TextField fx:id="workerIdFilterField" promptText="Filter by ID" prefWidth="90"/>
                         <TextField fx:id="firstNameFilterField" promptText="Filter by First Name" prefWidth="120"/>
-                        <TextField fx:id="middleNameFilterField" promptText="Filter by Middle Name" prefWidth="120"/> <!-- New filter field -->
+                        <TextField fx:id="middleNameFilterField" promptText="Filter by Middle Name" prefWidth="120"/>
                         <TextField fx:id="lastNameFilterField" promptText="Filter by Last Name" prefWidth="120"/>
                         <TextField fx:id="ageFilterField" promptText="Filter by Age" prefWidth="120"/>
                         <TextField fx:id="genderFilterField" promptText="Filter by Gender" prefWidth="120"/>
@@ -37,7 +37,7 @@
                         <TextField fx:id="salaryFilterField" promptText="Filter by Salary" prefWidth="120"/>
                     </children>
                 </HBox>
-                <!-- TableView -->
+
                 <ScrollPane>
                     <content>
                         <AnchorPane id="Content" maxWidth="1.7976931348623157E308" minHeight="-1.0" minWidth="-Infinity" prefHeight="517.0" prefWidth="592.0">
@@ -60,7 +60,7 @@
                                     <columns>
                                         <TableColumn fx:id="workerId" minWidth="75.0" prefWidth="100.0" text="Worker ID" />
                                         <TableColumn fx:id="firstName" minWidth="75.0" prefWidth="160.0" text="First Name" />
-                                        <TableColumn fx:id="middleName" minWidth="75.0" prefWidth="160.0" text="Middle Name" /> <!-- New column -->
+                                        <TableColumn fx:id="middleName" minWidth="75.0" prefWidth="160.0" text="Middle Name" />
                                         <TableColumn fx:id="lastName" minWidth="75.0" prefWidth="160.0" text="Last Name" />
                                         <TableColumn fx:id="age" minWidth="75.0" prefWidth="100.0" text="Age" />
                                         <TableColumn fx:id="gender" minWidth="75.0" prefWidth="100.0" text="Gender" />

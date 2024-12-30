@@ -11,7 +11,7 @@ public class ClothesCreateView {
     private String clothesSize;
     private double clothesPrice;
 
-    // Getters and Setters
+
     public String getClothesName() {
         return clothesName;
     }
@@ -60,7 +60,7 @@ public class ClothesCreateView {
         this.clothesPrice = clothesPrice;
     }
 
-    // toString method
+
     @Override
     public String toString() {
         return "ClothesCreateView{" +

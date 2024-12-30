@@ -11,7 +11,7 @@ public class LoginDetailView {
     private LongProperty idWorker = new SimpleLongProperty();
     private StringProperty firstname = new SimpleStringProperty();
     private StringProperty lastname = new SimpleStringProperty();
-    // Getters and setters
+
     public String getUserName() {
         return userName.get();
     }
@@ -36,7 +36,7 @@ public class LoginDetailView {
         this.idWorker.set(idWorker);
     }
 
-    // Property accessors for binding
+
     public StringProperty userNameProperty() {
         return userName;
     }

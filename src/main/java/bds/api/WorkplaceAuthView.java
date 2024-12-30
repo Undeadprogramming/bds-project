@@ -2,14 +2,14 @@ package bds.api;
 
 public class WorkplaceAuthView {
 
-    private long idWorkplace;          // Represents the workplace ID
-    private int city;                  // Represents the city (ID of the city in the address table)
-    private String buildingAddress;    // Represents the building address
-    private int floor;                 // Represents the floor in the building
-    private String seatPlacement;      // Represents the seat placement in the workplace
-    private int idWorker;              // Represents the worker ID associated with the workplace
+    private long idWorkplace;
+    private int city;
+    private String buildingAddress;
+    private int floor;
+    private String seatPlacement;
+    private int idWorker;
 
-    // Getter and Setter methods
+
 
     public long getIdWorkplace() {
         return idWorkplace;

@@ -51,20 +51,20 @@ public class CustomerCreateController {
 
     @FXML
     void handleCreateNewCustomer(ActionEvent event) {
-        // Get the input values for all properties of the customer
-        String firstName = newCustomerFirstName.getText(); // Customer first name
-        String lastName = newCustomerLastName.getText();   // Customer last name
 
-        // Create a CustomerCreateView object with the provided information
+        String firstName = newCustomerFirstName.getText();
+        String lastName = newCustomerLastName.getText();
+
+
         CustomerCreateView customerCreateView = new CustomerCreateView();
         customerCreateView.setFirstName(firstName);
         customerCreateView.setLastName(lastName);
 
-        // Call the customer service to handle the customer creation logic
+
         customerService.createCustomer(customerCreateView);
         ((Stage) ((Node) event.getSource()).getScene().getWindow()).close();
 
-        // Show the confirmation dialog after customer creation
+
         customerCreatedConfirmationDialog();
     }
 
@@ -73,7 +73,7 @@ public class CustomerCreateController {
         alert.setTitle("Customer Created Confirmation");
         alert.setHeaderText("Your customer was successfully created.");
 
-        // Automatically close the alert after 3 seconds
+
         Timeline idlestage = new Timeline(new KeyFrame(Duration.seconds(3), new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent event) {

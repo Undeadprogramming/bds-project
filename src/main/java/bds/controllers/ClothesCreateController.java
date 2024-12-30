@@ -67,15 +67,15 @@ public class ClothesCreateController {
 
     @FXML
     void handleCreateNewClothes(ActionEvent event) {
-        // Get the input values for all properties of clothes
-        String name = newClothesName.getText(); // Clothes name
-        String size = newClothesSize.getText(); // Clothes size
-        String color = newClothesColor.getText(); // Clothes color
-        String type = newClothesType.getText(); // Clothes type
-        int quantity = Integer.parseInt(newClothesQuantity.getText()); // Clothes quantity
-        double price = Double.parseDouble(newClothesPrice.getText()); // Clothes price
 
-        // Create a ClothesCreateView object with the provided information
+        String name = newClothesName.getText();
+        String size = newClothesSize.getText();
+        String color = newClothesColor.getText();
+        String type = newClothesType.getText();
+        int quantity = Integer.parseInt(newClothesQuantity.getText());
+        double price = Double.parseDouble(newClothesPrice.getText());
+
+
         ClothesCreateView clothesCreateView = new ClothesCreateView();
         clothesCreateView.setClothesName(name);
         clothesCreateView.setClothesSize(size);
@@ -84,10 +84,10 @@ public class ClothesCreateController {
         clothesCreateView.setClothesQuantity(quantity);
         clothesCreateView.setClothesPrice(price);
 
-        // Call the clothes service to handle the clothes creation logic
+
         clothesService.createClothes(clothesCreateView);
         ((Stage) ((Node) event.getSource()).getScene().getWindow()).close();
-        // Show the confirmation dialog after clothes creation
+
         clothesCreatedConfirmationDialog();
     }
 
@@ -96,7 +96,7 @@ public class ClothesCreateController {
         alert.setTitle("Clothes Created Confirmation");
         alert.setHeaderText("Your clothes item was successfully created.");
 
-        // Automatically close the alert after 3 seconds
+
         Timeline idlestage = new Timeline(new KeyFrame(Duration.seconds(3), new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent event) {

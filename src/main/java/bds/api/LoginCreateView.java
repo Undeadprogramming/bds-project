@@ -8,7 +8,7 @@ public class LoginCreateView {
     private char[] password;
     private int idWorker;
 
-    // Getters and Setters
+
     public String getUserName() {
         return userName;
     }
@@ -33,7 +33,7 @@ public class LoginCreateView {
         this.idWorker = idWorker;
     }
 
-    // toString method
+
     @Override
     public String toString() {
         return "LoginCreateView{" +

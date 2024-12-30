@@ -128,23 +128,23 @@ public class LoginController {
         try {
             FXMLLoader fxmlLoader = new FXMLLoader();
             fxmlLoader.setLocation(App.class.getResource("fxml/menu.fxml"));
-            Scene scene = new Scene(fxmlLoader.load(), 800, 500); // Adjust the size as needed
+            Scene scene = new Scene(fxmlLoader.load(), 800, 500);
             Stage stage = new Stage();
             stage.setTitle("Main Menu");
             stage.setScene(scene);
 
-            // Close the current stage
+
             Stage stageOld = (Stage) signInButton.getScene().getWindow();
             stageOld.close();
 
-            // Set the application icon (update the path if needed)
+
             stage.getIcons().add(new Image(App.class.getResourceAsStream("logos/logo.png")));
             authConfirmDialog();
 
-            // Show the new stage
+
             stage.show();
         } catch (IOException ex) {
-            ExceptionHandler.handleException(ex); // Handles any exceptions that occur
+            ExceptionHandler.handleException(ex);
         }
     }
 

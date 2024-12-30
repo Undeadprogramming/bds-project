@@ -41,7 +41,6 @@ public class AuthService {
         System.out.println(password.toCharArray());
         String str = new String(ARGON2.hash(10, 65536, 1, loginAuthView.getPassword()));
         loginAuthView.setPassword(str);
-        //return ARGON2.verify(loginAuthView.getPassword(), password.toCharArray());
         logger.info(" password mine:{}",password.toCharArray());
         logger.info(" password data:{}",loginAuthView.getPassword());
         logger.info(" result:{}",ARGON2.verify(loginAuthView.getPassword(), password.toCharArray()));

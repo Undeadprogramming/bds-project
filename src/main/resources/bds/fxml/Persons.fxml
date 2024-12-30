@@ -32,7 +32,7 @@
             <TextField fx:id="passwordFilterField" promptText="Filter by password" />
           </children>
         </HBox>
-        <!-- TableView -->
+
         <ScrollPane>
           <content>
             <AnchorPane id="Content" maxWidth="1.7976931348623157E308" minHeight="-1.0" minWidth="-Infinity" prefHeight="517.0" prefWidth="592.0">
