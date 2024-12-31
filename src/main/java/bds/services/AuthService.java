@@ -37,8 +37,6 @@ public class AuthService {
         if (loginAuthView== null) {
             throw new ResourceNotFoundException("Provided username is not found.");
         }
-        System.out.println(loginAuthView.getPassword());
-        System.out.println(password.toCharArray());
 
         if(!loginAuthView.getPassword().startsWith("$argon2"))
         {
@@ -46,9 +44,6 @@ public class AuthService {
             loginAuthView.setPassword(str);
         }
 
-        logger.info(" password mine:{}",password.toCharArray());
-        logger.info(" password data:{}",loginAuthView.getPassword());
-        logger.info(" result:{}",ARGON2.verify(loginAuthView.getPassword(), password.toCharArray()));
         return ARGON2.verify(loginAuthView.getPassword(), password.toCharArray());
     }
 

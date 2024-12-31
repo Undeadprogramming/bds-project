@@ -113,13 +113,11 @@ public class LoginController {
                 showMenuView();
 
             } else {
-                logger.info("username:{}", username);
-                logger.info("password:{}", password);
+
                 showInvalidPaswordDialog();
             }
         } catch (ResourceNotFoundException | DataAccessException e) {
-            logger.info("username:{}", username);
-            logger.info("password:{}", password);
+
             showInvalidPaswordDialog();
         }
     }
